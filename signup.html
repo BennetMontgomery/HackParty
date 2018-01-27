@@ -57,10 +57,9 @@
       <br>
       <div class="row">
       <a href="index.html" class="waves-effect waves-light btn-large orange darken-2" style="margin-right: 20em"><i class="material-icons left">arrow_back</i>Back</a>
-      <button class="waves-effect waves-light btn-large disabled" id="submit" style="background-color: #80006f"><i class="material-icons left" type="submit">send</i>Submit</button>
+      <button class="waves-effect waves-light btn-large disabled" id="submit" style="background-color: #80006f" onclick="send()"><i class="material-icons left" type="submit">send</i>Submit</button>
     </div>
     </form>
-    
     </div>
   </div>
 <script src="particles.js"></script>
@@ -82,7 +81,8 @@
     };
     firebase.initializeApp(config);
     </script>
-<script type="text/javascript" src="extra.js"></script>
+<script type="text/javascript" src="frontend.js"></script>
+<script type="text/javascript" src="backend.js"></script>
 </body>
 
 </html>
