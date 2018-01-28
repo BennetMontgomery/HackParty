@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
+<!--   <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <link rel="stylesheet" href="css/monthly.css"/>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav >
+  <div class="nav-wrapper orange darken-2">
+    <a href="#" class="brand-logo"><img src="logo.png" style="height: 2em; padding-left: 0.3em"></a>
+    <ul id="nav-mobile" class="right hide-on-and-down">
+      <li><a href="">Profile</a></li>
+      <li><a href="portal.html">Calendar</a></li>
+      <li><a href="">Past Events</a></li>
+    </ul>
+  </div>
+  </nav>
+  <br>
+  <br>
+
+<div class="monthly" id="mycalendar"></div>
+
+<script src="particles.js"></script>
+<script src="app.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCFnkP6fCfIktkVXwMlHM80aDC7FMJpujA",
+      authDomain: "hackparty-672ed.firebaseapp.com",
+      databaseURL: "https://hackparty-672ed.firebaseio.com",
+      projectId: "hackparty-672ed",
+      storageBucket: "hackparty-672ed.appspot.com",
+      messagingSenderId: "444356113260"
+    };
+    firebase.initializeApp(config);
+    </script>
+<script type="text/javascript" src="frontend.js"></script>
+<script type="text/javascript" src="backend.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/monthly.js"></script>
+<script type="text/javascript">
+
+  var sampleEvents = {
+  "monthly": [
+    {
+    "id": 1,
+    "name": "Whole month event",
+    "startdate": "2018-01-27",
+    "enddate": "2018-01-28",
+    "starttime": "12:00",
+    "endtime": "2:00",
+    "color": "#99CCCC",
+    "url": ""
+    },
+    {
+    "id": 2,
+    "name": "Test encompasses month",
+    "startdate": "2016-10-29",
+    "enddate": "2016-12-02",
+    "starttime": "12:00",
+    "endtime": "2:00",
+    "color": "#CC99CC",
+    "url": ""
+    }
+  ]
+  };
+
+  $(window).load( function() {
+    $('#mycalendar').monthly({
+      mode: 'event',
+      dataType: 'json',
+      events: sampleEvents
+    });
+  });
+</script>
+</body>
+</html>
