@@ -4,21 +4,12 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
 <!--   <link rel="stylesheet" type="text/css" href="style.css"> -->
-  <link rel="stylesheet" href="css/monthly.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/monthly.css') }}"/>
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <nav >
-  <div class="nav-wrapper orange darken-2">
-    <a href="#" class="brand-logo"><img src="logo.png" style="height: 2em; padding-left: 0.3em"></a>
-    <ul id="nav-mobile" class="right hide-on-and-down">
-      <li><a href="profile.html">Profile</a></li>
-      <li><a href="portal.html">Calendar</a></li>
-      <li><a href="">Past Events</a></li>
-    </ul>
-  </div>
-  </nav>
+  {% include 'navbar.html' %}
   <br>
   <br>
 
@@ -43,12 +34,12 @@
     };
     firebase.initializeApp(config);
     </script>
-<script type="text/javascript" src="frontend.js"></script>
-<script type="text/javascript" src="backend.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src ="newEvent.js">
+<script type="text/javascript" src="{{ url_for('static', filename='js/frontend.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/backend.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src ="{{ url_for('static', filename='js/newEvent.js') }}">
 </script>
-<script type="text/javascript" src="js/monthly.js"></script>
-<script type="text/javascript" src="eventLoader.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/monthly.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/eventLoader.js') }}"></script>
 </body>
 </html>

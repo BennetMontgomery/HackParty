@@ -3,21 +3,31 @@
 <head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 </head>
 
 <body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
 <div id="particles-js"></div>
 
       <div class="col s12 m5">
         <div class="card-panel white" id="login">
         	<div class="container">
-        	<img class="responsive-img" style="margin-left: auto; margin-right: auto; display: block;" src="logo.png">
+        	<img class="responsive-img" style="margin-left: auto; margin-right: auto; display: block;" src="{{ url_for('static', filename='images/logo.png') }}">
         	</div>
         	<div class="row">
         	<div class="row"></div>
-    <form class="col s12" id="contact_form">
+    <form class="col s12" id="contact_form" method="POST", action="{{ url_for('user') }}">
 
       <div class="row">
         <div class="input-field col s6">
@@ -56,14 +66,14 @@
       <p id="message">&nbsp;</p>
       <br>
       <div class="row">
-      <a href="index.html" class="waves-effect waves-light btn-large orange darken-2" style="margin-right: 20em"><i class="material-icons left">arrow_back</i>Back</a>
+      <a href="index" class="waves-effect waves-light btn-large orange darken-2" style="margin-right: 20em"><i class="material-icons left">arrow_back</i>Back</a>
       <button class="waves-effect waves-light btn-large disabled" id="submit" style="background-color: #80006f" onclick="sendRegister()"><i class="material-icons left" type="submit">send</i>Submit</button>
     </div>
     </form>
     </div>
   </div>
-<script src="particles.js"></script>
-<script src="app.js"></script>
+<script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
@@ -81,8 +91,6 @@
     };
     firebase.initializeApp(config);
     </script>
-<script type="text/javascript" src="frontend.js"></script>
-<script type="text/javascript" src="backend.js"></script>
 </body>
 
 </html>

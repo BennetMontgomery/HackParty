@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+
+<body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+<div id="particles-js"></div>
+      <div class="col s12 m5">
+        <div class="card-panel white" id="login">
+        	<div class="container">
+        	<img class="responsive-img" style="margin-left: auto; margin-right: auto; display: block;" src="{{ url_for('static', filename='images/logo.png') }}">
+        	</div>
+        	<div class="row">
+        	<div class="row"></div>
+			
+    <form action="{{ url_for('login') }}" method="POST" class="col s12" >
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="username" placeholder="Alan420" id="loginUsername" type="text">
+          <label for="loginUsername">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="password" placeholder="************" id="loginPassword" type="password">
+          <label for="loginPassword">Password</label>
+        </div>
+      </div>
+		<div class="container center-align">
+			<input type="submit" value="Log in">
+			<a class="waves-effect waves-light btn-large left-align" href="signup" style="background-color: #80006f"><i class="material-icons left">input</i>Join the Party!</a>
+		</div>
+	</form>
+    <div class="container center-align">
+    <!--<a class="waves-effect waves-light btn-large orange darken-2 left-align" id="loginButton" style="margin-right: 40px" onclick="send()" href=""><i class="material-icons left">input</i>Login to the Party!</a>
+	-->
+
+    </div>
+    </div>
+    </div>
+  </div>
+<script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="{{ url_for('static', filename='js/frontend.js') }}"></script>
+</body>
+
+</html>
