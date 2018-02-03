@@ -266,7 +266,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				// Add to event list
 				$(parent + ' .monthly-list-item[data-number="' + index + '"]')
 					.addClass("item-has-event")
-					.append(markupListEvent);
+					.append('<div class="row" id="minecraft"><div class="col s1 center-align"><button class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
 			}
 		}
 

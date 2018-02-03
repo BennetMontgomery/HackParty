@@ -35,24 +35,6 @@ $('#password, #confirmPassword').on('keyup', function() {
 		document.getElementById("submit").classList.add('waves-effect');
 	}
 });
-};
-
-jQuery(function() {
-	console.log("Print")
-	$('#speciality').on('keyup', function (e) {
-    
-    if (e.keyCode == 13) {
-    	e.preventDefault();
-		$('#tagsHol').append('<div class="chip' + col[a] + '"'>'+$('#speciality').val()+'<i class="close material-icons">close</i></div>');
-    }
-	});
-	$('#skill').on('keyup', function (e) {
-    if (e.keyCode == 13) {
-    	e.preventDefault();
-		$('#tagsHolder').append('<div class="chip">'+$('#skill').val()+'<i class="close material-icons">close</i></div>');
-    }
-	});
-});
 
 function colourer(){
 	var col=["red", "green", "blue", "white", "orange", "pink", "purple", 
