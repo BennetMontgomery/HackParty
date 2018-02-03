@@ -211,7 +211,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 			var location = _getEventDetail(event, "location"),
 
-				eventLocation = _getEventDetail(event, "location"),
+				eventLocation = _getEventDetail(event, "location").replace(",", ", "),
 				eventURL = _getEventDetail(event, "url"),
 				eventTitle = _getEventDetail(event, "name"),
 				eventClass = _getEventDetail(event, "class"),
