@@ -11,8 +11,6 @@ function setEvents(data) {
 	events = data;
 }
 
-console.log(events);
-
 var sampleEvents = {
 	"monthly": events
 };
