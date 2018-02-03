@@ -3,7 +3,6 @@
 <head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
-<!--   <link rel="stylesheet" type="text/css" href="style.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/monthly.css') }}"/>
 </head>
 
@@ -35,41 +34,24 @@
 <div class="container">
 	<div class="row">
 		<div class="col s3">
-			<h2>Languages</h2>
-		 	 <form action="#">
-			  	<p>
-			  		<input type="checkbox" id="Java" />
-			  		<label for="Java">Java</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="Javascript" />
-			  		<label for="Javascript">Javascript</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="Python" />
-			  		<label for="Python">Python</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="C" />
-			  		<label for="C">C</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="Swift" />
-			  		<label for="Swift">Swift</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="C#" />
-			  		<label for="C#">C#</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="CSS" />
-			  		<label for="CSS">CSS</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="PHP" />
-			  		<label for="PHP">PHP</label>
-			  	</p>
-		  	</form>
+			<h2>Lanugages</h2>
+				 <div class="row">
+			    <div class="col s12">
+			      <div class="row">
+			        <div class="input-field col s13">
+			          <i class="material-icons prefix">textsms</i>
+			          <input type="text" id="skill" class="autocomplete">
+			          <label for="skill">Autocomplete</label>
+			        </div>
+			        <div id="tagsHolder">
+			        	
+			        </div>
+
+					  
+			        
+			      </div>
+			    </div>
+			  </div>
 		  </div>
 		 <div class="col s3 offset-s2">
 				<h2>Speciality</h2>
@@ -159,22 +141,27 @@
 <br>
 <br>
 {%include 'footer.html'%}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCFnkP6fCfIktkVXwMlHM80aDC7FMJpujA",
-      authDomain: "hackparty-672ed.firebaseapp.com",
-      databaseURL: "https://hackparty-672ed.firebaseio.com",
-      projectId: "hackparty-672ed",
-      storageBucket: "hackparty-672ed.appspot.com",
-      messagingSenderId: "444356113260"
-    };
-    firebase.initializeApp(config);
+        $(document).ready(function() {
+		  $('input').autocomplete({
+		    data: {
+		      "Apple": null,
+		      "Microsoft": null,
+		      "Google": 'https://placehold.it/250x250'
+		    },
+		    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+		    onAutocomplete: function(val) {
+		      $('#tagsHolder').append('<div class="chip">'+$('#skill').val()+'<i class="close material-icons">close</i></div>');
+		    },
+		    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+		  });
+		});
+        
     </script>
   <script>
    $(document).ready(function() {
