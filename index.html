@@ -21,19 +21,19 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input value="" placeholder="Alan420" id="username" type="text" class="validate">
-          <label for="username">Username</label>
+          <input value="" placeholder="Alan420" id="loginUsername" type="text" class="validate">
+          <label for="loginUsername">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input value="" placeholder="************" id="password" type="password" class="validate">
-          <label for="password">Password</label>
+          <input value="" placeholder="************" id="loginPassword" type="password" class="validate">
+          <label for="loginPassword">Password</label>
         </div>
       </div>
     </form>
     <div class="container center-align">
-    <a class="waves-effect waves-light btn-large orange darken-2 left-align" style="margin-right: 40px" href="portal.html"><i class="material-icons left">input</i>Login to the Party!</a>
+    <a class="waves-effect waves-light btn-large orange darken-2 left-align" id="loginButton" style="margin-right: 40px" onclick="send()" href=""><i class="material-icons left">input</i>Login to the Party!</a>
     <a class="waves-effect waves-light btn-large left-align" href="signup.html" style="background-color: #80006f"><i class="material-icons left">input</i>Join the Party!</a>
     </div>
     </div>
@@ -43,6 +43,8 @@
 <script src="app.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="frontend.js"></script>
+<script src="backend.js"></script>
 </body>
 
 </html>

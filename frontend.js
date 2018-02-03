@@ -1,5 +1,11 @@
 // import * as backend from "backend.js";
 var readyToSend = false;
+var firstName;
+var lastName;
+var username;
+var email;
+var password;
+
 $('#password, #confirmPassword').on('keyup', function () {
 	if ($('#password').val().length > 7) {
 		if ($('#password').val() == $('#confirmPassword').val()) {
@@ -36,13 +42,24 @@ $('#first_name, #last_name, #username, #email, #password, #confirmPassword').on(
 });
 
 // THIS FUNCTION SENDS INFORMATION FROM FRONTEND TO BACKEND, WORKS ONLY WHEN SUBMIT BUTTON IS CLICKED
-function send() {
+function sendRegister() {
 	if (readyToSend) {
 		firstName = $('#first_name').val();
 		lastName = $('#last_name').val();
 		username = $('#username').val();
 		email = $('#email').val();
 		password = $('#password').val();
+		submitUser(new User(firstName, lastName, username, email, password));
+		for(var i = 0; i < userList.length; i++) {
+			console.log(userList[i]);
+		}
+	}
+}
+
+function send() {
+	if (userNameMatchesPassword($('#loginUsername').val(), $('#loginPassword').val())) {
+		console.log("XDDD")
+		document.getElementById("loginButton").href="portal.html"
 	}
 }
 

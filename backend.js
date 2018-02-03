@@ -1,33 +1,56 @@
 //DECLARATIONS
-// You may refer to any of these strings because they are set by the frontend.js
-var userRefs = firebase.database().ref("users/");
-var firstName = "";
-var lastName = "";
-var username = "";
-var email = "";
-var password = "";
-firebase.auth().signInWithEmailAndPassword("bennetlogan@gmail.com", "creation").catch(function(error) {
-	console.log(error.message);
-});
-userRefs.once("value", function(snapshot) {
-	console.log(snapshot);
-});
-function submitForm(e) {
-	e.preventDefault();
-	firstName = getInputVal('first_name');
-	lastName = getInputVal('last_name');
-	username = getInputVal('username');
-	email = getInputVal('email');
-	password = getInputVal('password');
+var userList = [];
+var eventList = [];
 
-	userRefs.child(username).set({
-	firstName: firstName,
-	lastName: lastName,
-	password: password,
-	email: email
-	});
+class User {
+	constructor(firstName, lastName, username, email, password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
 }
 
-function getInputVal(id) {
-	return document.getElementById(id).value;
+class Event {
+	constructor(name, startDate, endDate, startTime, endTime, color, url) {
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.color = color;
+		this.url = url;
+	}
 }
+
+function submitUser(inputUser) {
+	userList.unshift(inputUser);
+}
+
+function submitEvent(inputEvent) {
+	eventList.unshift(inputEvent);
+}
+
+function userNameIsValid(userName) {
+	for(var i = 0; i < userList.length; i++) {
+		if(userList[i].username === username) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function userNameMatchesPassword(userName, password) {
+	for(var i = 0; i < userList.length; i++) {
+		if(userList[i].userName === username && userList[i].password === password) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+var user = new User("B", "M", "been", "dontmineatnight@mojang.gov", "password");
+submitUser(user);
