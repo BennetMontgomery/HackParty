@@ -91,6 +91,7 @@ def createUser():
 	root.child('users').child(request.form['username']).set(userData)
 	session['name'] = request.form['firstname']+" "+request.form['lastname']
 	session['username'] = request.form['username']
+	session['logged_in'] = True
 	return redirect("profile")
 @app.route("/logout")
 def logout():
