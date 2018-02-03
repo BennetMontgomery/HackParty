@@ -43,7 +43,7 @@ def login():
 	if exists(request.form['username'], request.form['password']):
 		session['logged_in'] = True
 		session['username'] = request.form['username']
-		return render_template("profile.html")
+		return redirect('profile')
 	if not 'logged_in' in session:
 		return render_template('index.html')
 	return render_template("index.html")
@@ -62,7 +62,7 @@ def index():
 def signup():
 	if 'logged_in' in session:
 		if session['logged_in']:
-			return render_template('profile.html')
+			return render_template('profile.html', languages =None)
 	return render_template('signup.html')
 
 
@@ -73,7 +73,7 @@ def updateProfile():
 			return render_template('index.html')
 	skills = ['java', 'C#']
 	root.child('users').child(session['username']).child('languages').set(skills)
-	return render_template('profile.html')
+	return render_template('profile.html', languages =None)
 
 
 @app.route('/profile', methods=['GET'])
@@ -81,7 +81,7 @@ def profile():
 	lang =root.child('users').child(session['username']).child('languages').get()
 	if lang is not None:
 		return render_template('profile.html', languages = lang)
-	return render_template('profile.html')
+	return render_template('profile.html', languages =None)
 @app.route('/createUser', methods = ['POST'])
 def createUser():
 	userCheck = root.child('users').child(request.form['username']).get()
@@ -104,7 +104,6 @@ def teams():
 def portal():
 	return render_template("portal.html")
 
-	
 @app.route("/updatelanguages", methods=['POST'])
 def updatelanguages():
 	if not 'logged_in' in session:
@@ -112,8 +111,15 @@ def updatelanguages():
 			return render_template('index.html')
 	skills = request.form['data']
 	root.child('users').child(session['username']).child('languages').set(skills)
-	return render_template("profile.html")
+	return render_template("profile.html", languages =None)
 
+@app.route("/updateuserevents", methods=['POST'])
+def updateuserevents():
+	hacks = root.child('users').child(session['username']).child('events').get(request.form['data'])
+	if hacks is not None:
+		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
+	else:
+		root.child('users').child(session['username']).child('events').child(request.form['data']).set(True)
 if __name__ == '__main__':
 	app.run(debug=True)
 

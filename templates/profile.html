@@ -44,11 +44,11 @@
 			        </div>
 			        
 			        <div id="tagsHolder">
-						{% if languages is not none %}
+							{% if languages != none %}
 							{% for language in languages.replace(" ","").split(',') %}
 								<div class="chip">{{language}}<i class="close material-icons">close</i></div>
 							{% endfor %}
-						{% endif %}
+							{% endif %}
 					</div>
 			        <div class="row">
 			        	<div class="col s12 offset-s6">
