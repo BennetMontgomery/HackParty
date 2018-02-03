@@ -19,10 +19,19 @@
 {% endwith %}
 {% block body %}{% endblock %}
 {% include 'navbar.html' %}
-<table>
+<table class="container">
+<tr>
+<th>
+name
+</th>
+<th>
+email
+</th>
+</tr>
 {% for row in data %}
     <tr>
-      <td>{{ row[0] }}</td>
+	  <td>{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</td>
+	  <td>{{ row[1].get('email') }}</td>
     </tr>
 {% endfor %}
 </table>
