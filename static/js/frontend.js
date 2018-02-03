@@ -43,6 +43,15 @@ $('#first_name, #last_name, #username, #email, #password, #confirmPassword').on(
 });
 }
 
+jQuery(function () {
+	$('#skill').on('keyup', function (e) {
+    if (e.keyCode == 13) {
+    	e.preventDefault();
+		$('#tagsHolder').append('<div class="chip">'+$('#skill').val()+'<i class="close material-icons">close</i></div>');
+    }
+	});
+});
+
 // THIS FUNCTION SENDS INFORMATION FROM FRONTEND TO BACKEND, WORKS ONLY WHEN SUBMIT BUTTON IS CLICKED
 function sendRegister() {
 	if (readyToSend) {
