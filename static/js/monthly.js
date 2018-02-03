@@ -232,12 +232,18 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				dayStartTag = "<a" + attr("href", eventURL);
 				dayEndTags = "</span></a>";
 			}
-			
+		
+	var col=["red", "green", "blue", "white", "orange", "pink", "purple", 
+	"deep-purple", "indigo", "cyan", "teal", "light-blue", 
+	"light-green", "lime", "amber", "brown", "blue-grey"];
+	var a = "";
+	a=Math.floor(Math.random()*18);
+	
 			var	markupDayStart = dayStartTag
 					+ attr("data-eventid", eventId)
 					+ attr("title", eventTitle)
 					// BG and FG colors must match for left box shadow to create seamless link between dates
-					+ (eventColor ? attr("style", "background:" + eventColor + ";color:" + eventColor) : ""),
+					+ (col[a] ? attr("style", "background:" + col[a] + ";color:" + col[a]) : ""),
 				markupListEvent = "<a"
 					+ attr("href", eventURL)
 					+ attr("class", "listed-event" + customClass)

@@ -43,7 +43,7 @@ jQuery(function() {
     
     if (e.keyCode == 13) {
     	e.preventDefault();
-		$('#tagsHol').append('<div class="chip">'+$('#speciality').val()+'<i class="close material-icons">close</i></div>');
+		$('#tagsHol').append('<div class="chip' + col[a] + '"'>'+$('#speciality').val()+'<i class="close material-icons">close</i></div>');
     }
 	});
 	$('#skill').on('keyup', function (e) {
@@ -53,6 +53,15 @@ jQuery(function() {
     }
 	});
 });
+
+function colourer(){
+	var col=["red", "green", "blue", "white", "orange", "pink", "purple", 
+	"deep-purple", "indigo", "cyan", "teal", "light-blue", 
+	"light-green", "lime", "amber", "brown", "blue-grey"];
+	var a = "";
+	a=Math.floor(Math.random()*18);
+	document.getElementByClass('looper').classList.add('"'+col[a]+'"');
+}
 
 // THIS FUNCTION SENDS INFORMATION FROM FRONTEND TO BACKEND, WORKS ONLY WHEN SUBMIT BUTTON IS CLICKED
 function sendRegister() {
