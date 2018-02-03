@@ -89,13 +89,10 @@ def createUser():
 	userData = {"firstname":request.form['firstname'], "lastname":request.form['lastname'], "username": request.form['username'], "email":request.form['email'], "password": request.form['password']}
 	root.child('users').child(request.form['username']).set(userData)
 	return redirect("user")
-@app.route('/updatetiles', method =['POST'])
-def updatetiles():
-
 @app.route("/logout")
 def logout():
-    session.clear()
-    return redirect("index.html")
+	session.clear()
+	return redirect("index.html")
 
 @app.route("/portal")
 def portal():
