@@ -30,7 +30,6 @@ def exists(username, password):
 	userb = root.child('users').child(username).get()
 	if userb is None:
 		return False
-	flash(userb.get("username"))
 	if password == userb.get('password'):
 		return True
 	return False
