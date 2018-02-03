@@ -39,7 +39,7 @@ Skills
 	  {% if languagelist is none %}
 		<td>None</td>
 	  {% else %}
-		<td>{% for language in languagelist.replace(" ","").split(',') %}<div class="chip">{{language}}<i class="close material-icons">close</i></div>{% endfor %}</td>
+		<td>{% for language in languagelist.replace(" ","").split(',') %}<div class="chip">{{language}}</div>{% endfor %}</td>
 	  {% endif %}
     </tr>
 {% endfor %}
