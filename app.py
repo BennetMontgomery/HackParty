@@ -54,6 +54,7 @@ def index():
 	if 'logged_in' in session:
 		if session['logged_in']:
 			return redirect('profile')
+	session.clear()
 	return render_template("index.html")
 
 
@@ -88,7 +89,8 @@ def createUser():
 		return render_template("signup.html", error="username taken")
 	userData = {"firstname":request.form['firstname'], "lastname":request.form['lastname'], "username": request.form['username'], "email":request.form['email'], "password": request.form['password']}
 	root.child('users').child(request.form['username']).set(userData)
-	session['username'] = request.form['firstname']+" "+request.form['lastname']
+	session['name'] = request.form['firstname']+" "+request.form['lastname']
+	session['username'] = request.form['username']
 	return redirect("profile")
 @app.route("/logout")
 def logout():
@@ -110,7 +112,7 @@ def updatelanguages():
 			return render_template('index.html')
 	skills = request.form['data']
 	root.child('users').child(session['username']).child('languages').set(skills)
-	return render_template("profile.html", languages =None)
+	return redirect("profile.html")
 
 @app.route("/updateuserevents", methods=['POST'])
 def updateuserevents():
