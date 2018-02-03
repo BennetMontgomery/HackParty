@@ -129,62 +129,9 @@
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script>
         $(document).ready(function() {
-		  $('#skill').autocomplete({
+		  $('input.skill').autocomplete({
 		    data: {
-
 		      "JavaScript (Vanilla)": "http://logo-load.com/uploads/posts/2016-09/javascript-logo.png",
-
-		      "Node.js": "https://nodejs.org/static/images/logo.svg",
-
-		      "React": 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K',
-
-			  "Java": "https://logos-download.com/wp-content/uploads/2016/10/Java_logo_icon.png",
-
-			  "C#": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/C_Sharp_wordmark.svg/1200px-C_Sharp_wordmark.svg.png",
-
-			  "C++": "https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png",
-
-			  "D": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/D_Programming_Language_logo.svg/1200px-D_Programming_Language_logo.svg.png",
-
-			  "Go/Golang": "https://d1q6f0aelx0por.cloudfront.net/product-logos/81630ec2-d253-4eb2-b36c-eb54072cb8d6-golang.png",
-
-			  "python": "https://www.python.org/static/opengraph-icon-200x200.png",
-
-			  "perl": "https://cdn.perl.org/perlweb/images/icons/header_camel.png",
-
-			  "php": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1200px-PHP-logo.svg.png",
-
-			  "HTML5": "https://www.w3.org/html/logo/downloads/HTML5_Logo_128.png",
-
-			  "scala": "http://www.unixstickers.com/image/data/stickers/scala/Scala-logoText.sh.png",
-
-			  "Rust": "https://www.rust-lang.org/logos/rust-logo-blk.svg",
-
-			  "LiveScript": "https://s3.amazonaws.com/github/downloads/gkz/LiveScript/logo.png",
-
-			  "coffeescript": "http://videotutorialspoint.com/wp-content/uploads/2016/04/coffeescript.png",
-
-			  "Kotlin": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/2000px-Kotlin-logo.svg.png",
-
-			  "Haskell": "https://wiki.haskell.org/wikiupload/4/4a/HaskellLogoStyPreview-1.png",
-
-			  "chapel": "https://chapel-lang.org/images/contest-winner.png",
-
-			  "red": "https://upload.wikimedia.org/wikipedia/en/e/e9/Red_Language_Tower_Logo.png",
-
-			  "Ruby": "https://www.vectorlogo.zone/logos/ruby/ruby-card.png",
-
-			  "Swift": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Swift_logo.svg/2000px-Swift_logo.svg.png",
-			  "TypeScript": "https://camo.githubusercontent.com/364fcc20318b28180fbea3e335792e45caf3d4b2/687474703a2f2f7777772e747970657363726970746c616e672e6f72672f6173736574732f696d616765732f69636f6e732f616e64726f69642d6368726f6d652d313932783139322e706e67",
-
-			  "MicroPython": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Micropython-logo.svg/2000px-Micropython-logo.svg.png",
-
-			  "PowerShell": "https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png",
-
-			  "Prolog": "https://starbeamrainbowlabs.com/images/logos/swi-prolog.svg",
-			  
-
-		       "JavaScript (Vanilla)": "http://logo-load.com/uploads/posts/2016-09/javascript-logo.png",
 		      "Node.js": "https://nodejs.org/static/images/logo.svg",
 		      "React": 'https://placehold.it/250x250',
 			  "Java": "https://logos-download.com/wp-content/uploads/2016/10/Java_logo_icon.png",
@@ -210,7 +157,6 @@
 			  "MicroPython": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Micropython-logo.svg/2000px-Micropython-logo.svg.png",
 			  "PowerShell": "https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png",
 			  "Prolog": "https://starbeamrainbowlabs.com/images/logos/swi-prolog.svg",
-
 			  "C": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/1200px-The_C_Programming_Language_logo.svg.png"
 		    },
 		    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
