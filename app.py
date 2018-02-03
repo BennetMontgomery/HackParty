@@ -95,8 +95,7 @@ def logout():
 @app.route("/teams")
 def teams():
 	users = root.child('users').get()
-	flash(users)
-	return render_template("teams.html", data = users)
+	return render_template("teams.html", data = users.items())
 @app.route("/portal")
 def portal():
 	return render_template("portal.html")
