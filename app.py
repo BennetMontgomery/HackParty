@@ -115,6 +115,15 @@ def updatelanguages():
 	root.child('users').child(session['username']).child('languages').set(skills)
 	return redirect("profile")
 
+@app.route("/updateSpec", methods=['POST'])
+def updateSpec():
+	if not 'logged_in' in session:
+		if not session['logged_in']:
+			return render_template('index.html')
+	speciality = request.form['data']
+	root.child('users').child(session['username']).child('speciality').set(speciality)
+	return redirect ("profile")
+
 @app.route("/updateuserevents", methods=['POST'])
 def updateuserevents():
 	hacks = root.child('users').child(session['username']).child('events').get(request.form['data'])
