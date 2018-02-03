@@ -54,40 +54,23 @@
 		  </div>
 		 <div class="col s3 offset-s2">
 				<h2>Speciality</h2>
-				 <form action="#">
-			  	<p>
-			  		<input type="checkbox" id="Blockchain" />
-			  		<label for="Blockchain">Blockchain</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="Data Science" />
-			  		<label for="Data Science">Data Science</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="UI/UX" />
-			  		<label for="UI/UX">UI/UX & Design</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="Server" />
-			  		<label for="Server">Server Side Technology</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="Android" />
-			  		<label for="Android">Android Apps</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="iOS" />
-			  		<label for="iOS">iOS Apps</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="ML" />
-			  		<label for="ML">Machine Learning</label>
-			  	</p>
-			  	<p>
-			  		<input type="checkbox" id="iot" />
-			  		<label for="iot">Other IOT Technologies</label>
-			  	</p>
-		  	</form>
+ 				<div class="row">
+			    <div class="col s12">
+			      <div class="row">
+			        <div class="input-field col s13">
+			          <i class="material-icons prefix">textsms</i>
+			          <input type="text" class="autocomplete" autocomplete="off" id="speciality">
+			          <label for="skill">Autocomplete</label>
+			        </div>
+			        <div style="padding-top: 1em ">
+			        	<button class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left">check</i></button>
+			        </div>
+			        <div id="tagsHolder">			        	
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+		  </div>
 		</div>
 		<div class="col s3 offset-s1">
 			<h2>Miscellaneous</h2>
@@ -147,11 +130,23 @@
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script>
         $(document).ready(function() {
-		  $('input').autocomplete({
+		  $('#skill').autocomplete({
 		    data: {
 		      "Apple": null,
 		      "Microsoft": null,
 		      "Google": 'https://placehold.it/250x250'
+		    },
+		    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+		    onAutocomplete: function(val) {
+		      $('#tagsHolder').append('<div class="chip">'+$('#skill').val()+'<i class="close material-icons">close</i></div>');
+		    },
+		    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+		  });
+		  $('#speciality').autocomplete({
+		    data: {
+		      "Blockchain": null,
+		      "AI": null,
+		      "chris": 'https://placehold.it/250x250'
 		    },
 		    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
 		    onAutocomplete: function(val) {
