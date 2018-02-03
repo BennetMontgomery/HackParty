@@ -177,8 +177,8 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		function addEvent(event, setMonth, setYear) {
 			// Year [0]   Month [1]   Day [2]
-			var fullStartDate = _getEventDetail(event, "startdate"),
-				fullEndDate = _getEventDetail(event, "enddate"),
+			var fullStartDate = _getEventDetail(event, "startDate"),
+				fullEndDate = _getEventDetail(event, "endDate"),
 				startArr = fullStartDate.split("-"),
 				startYear = parseInt(startArr[0], 10),
 				startMonth = parseInt(startArr[1], 10),
@@ -209,8 +209,9 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				return;
 			}
 
-			var startTime = _getEventDetail(event, "starttime"),
-				timeHtml = "",
+			var location = _getEventDetail(event, "location"),
+
+				eventLocation = _getEventDetail(event, "location"),
 				eventURL = _getEventDetail(event, "url"),
 				eventTitle = _getEventDetail(event, "name"),
 				eventClass = _getEventDetail(event, "class"),
@@ -220,9 +221,9 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				dayStartTag = "<div",
 				dayEndTags = "</span></div>";
 
-			if(startTime) {
+			if(location) {
 				var endTime = _getEventDetail(event, "endtime");
-				timeHtml = '<div><div class="monthly-list-time-start">' + formatTime(startTime) + "</div>"
+				location = '<div><div class="monthly-list-time-start">' + formatTime(location) + "</div>"
 					+ (endTime ? '<div class="monthly-list-time-end">' + formatTime(endTime) + "</div>" : "")
 					+ "</div>";
 			}
@@ -241,9 +242,10 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					+ attr("href", eventURL)
 					+ attr("class", "listed-event" + customClass)
 					+ attr("data-eventid", eventId)
+					+ attr("style", "color:" + "black")
 					+ (eventColor ? attr("style", "background:" + eventColor) : "")
 					+ attr("title", eventTitle)
-					+ ">" + eventTitle + " " + timeHtml + "</a>";
+					+ ">" + eventTitle + " " + "location" + "</a>";
 			for(var index = startDayNumber; index <= endDayNumber; index++) {
 				var doShowTitle = index === showEventTitleOnDay;
 				// Add to calendar view
