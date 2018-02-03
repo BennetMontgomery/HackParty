@@ -23,7 +23,7 @@ $('#password, #confirmPassword').on('keyup', function () {
 	}
 	
 });
-
+function Register(){
 $('#first_name, #last_name, #username, #email, #password, #confirmPassword').on('keyup', function() {
 	if ($('#first_name').val().length == 0 
 		|| $('#last_name').val().length == 0
@@ -38,8 +38,10 @@ $('#first_name, #last_name, #username, #email, #password, #confirmPassword').on(
 	else {
 		document.getElementById("submit").classList.remove('disabled');
 		readyToSend = true;
+		sendRegister();
 	}
 });
+}
 
 // THIS FUNCTION SENDS INFORMATION FROM FRONTEND TO BACKEND, WORKS ONLY WHEN SUBMIT BUTTON IS CLICKED
 function sendRegister() {
