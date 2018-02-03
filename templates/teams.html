@@ -27,11 +27,15 @@ name
 <th>
 email
 </th>
+<th>
+Skills
+</th>
 </tr>
 {% for row in data %}
     <tr class="looper">
 	  <td>{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</td>
 	  <td>{{ row[1].get('email') }}</td>
+	  <td>{{ row[1].get('languages') }}</td>
     </tr>
 {% endfor %}
 </table>
