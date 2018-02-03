@@ -211,7 +211,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 			var location = _getEventDetail(event, "location"),
 
-				eventLocation = _getEventDetail(event, "location"),
+				eventLocation = _getEventDetail(event, "location").replace(",", ", "),
 				eventURL = _getEventDetail(event, "url"),
 				eventTitle = _getEventDetail(event, "name"),
 				eventClass = _getEventDetail(event, "class"),
@@ -232,7 +232,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				dayStartTag = "<a" + attr("href", eventURL);
 				dayEndTags = "</span></a>";
 			}
-
+			
 			var	markupDayStart = dayStartTag
 					+ attr("data-eventid", eventId)
 					+ attr("title", eventTitle)
@@ -244,8 +244,9 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					+ attr("data-eventid", eventId)
 					+ attr("style", "color:" + "black")
 					+ (eventColor ? attr("style", "background:" + eventColor) : "")
+					+ attr("target=", "_blank")
 					+ attr("title", eventTitle)
-					+ ">" + eventTitle + " " + "location" + "</a>";
+					+ ">" + eventTitle + ", " + eventLocation + "</a>";
 			for(var index = startDayNumber; index <= endDayNumber; index++) {
 				var doShowTitle = index === showEventTitleOnDay;
 				// Add to calendar view
