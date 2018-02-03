@@ -35,7 +35,12 @@ Skills
     <tr class="looper">
 	  <td>{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</td>
 	  <td>{{ row[1].get('email') }}</td>
-	  <td>{{ row[1].get('languages') }}</td>
+	  {% set languagelist = row[1].get('languages') %}
+	  {% if languagelist is none %}
+		<td>None</td>
+	  {% else %}
+		<td>{% for language in languagelist.replace(" ","").split(',') %}<div class="chip">{{language}}<i class="close material-icons">close</i></div>{% endfor %}</td>
+	  {% endif %}
     </tr>
 {% endfor %}
 </table>
@@ -46,3 +51,4 @@ Skills
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 
 </body>
+<!--<div class="chip">coffeescript<i class="close material-icons">close</i></div>-->
