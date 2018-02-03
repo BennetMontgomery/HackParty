@@ -56,7 +56,7 @@ def login():
 def index():
     if 'logged_in' in session:
         if session['logged_in']:
-            return redirect(url_for('profile'))
+            return redirect(url_for('user'))
     return render_template("index.html")
 
 
@@ -78,8 +78,8 @@ def updateProfile():
     return render_template('profile.html')
 
 
-@app.route('/profile', methods=['GET'])
-def profile():
+@app.route('/user', methods=['GET'])
+def user():
     return render_template('profile.html')
 @app.route('/createUser', methods = ['POST'])
 def createUser():
@@ -92,7 +92,7 @@ def createUser():
 @app.route("/logout")
 def logout():
 	session.clear()
-	return redirect("index.html")
+	return redirect("index")
 
 @app.route("/portal")
 def portal():
