@@ -33,7 +33,7 @@ def exists(username, password):
 			return False
 		if details['username'] == username and details['password'] == password:
 			session['username'] = username
-			session['name'] = details['firstname'] + details['lastname']
+			session['name'] = details['firstname'] +" " + details['lastname']
 			return True
 	return False
 
@@ -89,7 +89,7 @@ def createUser():
 		return render_template("signup.html", error="username taken")
 	userData = {"firstname":request.form['firstname'], "lastname":request.form['lastname'], "username": request.form['username'], "email":request.form['email'], "password": request.form['password']}
 	root.child('users').child(request.form['username']).set(userData)
-	session['name'] = request.form['firstname']+request.form['lastname']
+	session['name'] = request.form['firstname']+" "+request.form['lastname']
 	return redirect("user")
 @app.route("/logout")
 def logout():

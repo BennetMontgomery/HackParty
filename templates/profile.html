@@ -29,7 +29,7 @@
 <br>
 <div class="container center-align">
 	<h1 id="username">{{session['username']}}</h1>
-	<h3 id="name">Sara Thompson</h3>
+	<h3 id="name">{{session['name']}}</h3>
 </div>
 <br>
 <form action="{{ url_for('updateProfile') }}" method="POST">
