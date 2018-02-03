@@ -40,15 +40,11 @@ def exists(username, password):
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-	flash("login")
 	if exists(request.form['username'], request.form['password']):
-		flash("2")
 		session['logged_in'] = True
 		return render_template("profile.html")
 	if not 'logged_in' in session:
 		return render_template('index.html')
-	else:
-		flash('wrong password!')
 	return render_template("index.html")
 
 
