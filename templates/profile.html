@@ -43,8 +43,13 @@
 			          <label for="skill">What's your hacker speak?</label>
 			        </div>
 			        
-			        <div id="tagsHolder">        	
-			        </div>
+			        <div id="tagsHolder">
+						{% if languages is not none %}
+							{% for language in languages.replace(" ","").split(',') %}
+								<div class="chip">{{language}}<i class="close material-icons">close</i></div>
+							{% endfor %}
+						{% endif %}
+					</div>
 			        <div class="row">
 			        	<div class="col s12 offset-s6">
 			    			<button onclick="saveTags()" class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left">check</i></button>
