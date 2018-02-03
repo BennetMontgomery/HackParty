@@ -5,6 +5,7 @@ var lastName;
 var username;
 var email;
 var password;
+var passwordOK = false;
 
 $('#password, #confirmPassword').on('keyup', function () {
 	if ($('#password').val().length > 7) {
@@ -23,25 +24,17 @@ $('#password, #confirmPassword').on('keyup', function () {
 	}
 	
 });
-function Register(){
-$('#first_name, #last_name, #username, #email, #password, #confirmPassword').on('keyup', function() {
-	if ($('#first_name').val().length == 0 
-		|| $('#last_name').val().length == 0
-		|| $('#username').val().length == 0
-		|| $('#email').val().length == 0
-		|| $('#password').val().length == 0
-		|| $('#confirmPassword').val().length == 0 
-		|| !passwordOK) {
+
+$('#password, #confirmPassword').on('keyup', function() {
+	if (!passwordOK) {
 		document.getElementById("submit").classList.add('disabled');
-		readyToSend = false;
+		document.getElementById("submit").classList.remove('waves-effect');
 	}
 	else {
 		document.getElementById("submit").classList.remove('disabled');
-		readyToSend = true;
-		sendRegister();
+		document.getElementById("submit").classList.add('waves-effect');
 	}
 });
-}
 
 jQuery(function () {
 	$('#skill').on('keyup', function (e) {
@@ -54,18 +47,13 @@ jQuery(function () {
 
 // THIS FUNCTION SENDS INFORMATION FROM FRONTEND TO BACKEND, WORKS ONLY WHEN SUBMIT BUTTON IS CLICKED
 function sendRegister() {
-	if (readyToSend) {
-		firstName = $('#first_name').val();
-		lastName = $('#last_name').val();
-		username = $('#username').val();
-		email = $('#email').val();
-		password = $('#password').val();
-		submitUser(new User(firstName, lastName, username, email, password));
-		for(var i = 0; i < userList.length; i++) {
-			console.log(userList[i]);
-		}
+	if (document.getElementById("submit").classList.contains('disabled')) {
+		return false
 	}
-}
+	else {
+		return true
+	}
+};
 
 function send() {
 	if (userNameMatchesPassword($('#loginUsername').val(), $('#loginPassword').val())) {
