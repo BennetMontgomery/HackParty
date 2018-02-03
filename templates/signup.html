@@ -8,9 +8,6 @@
 </head>
 
 <body>
-{% if error %}
-    <p class=error><strong>Error:</strong> {{ error }}
-  {% endif %}
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
@@ -66,7 +63,7 @@
           <label for="confirmPassword">Confirm Password</label>
         </div>
       </div>
-      <p id="message">&nbsp;</p>
+      <p id="message">{{ error }}</p>
       <br>
       <div class="row">
       <a href="index" class="waves-effect waves-light btn-large orange darken-2" style="margin-right: 20em"><i class="material-icons left">arrow_back</i>Back</a>
@@ -80,7 +77,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script>
     // Initialize Firebase
