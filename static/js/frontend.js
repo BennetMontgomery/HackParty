@@ -41,9 +41,17 @@ $('#first_name, #last_name, #username, #email, #password, #confirmPassword').on(
 		sendRegister();
 	}
 });
-}
+};
 
-jQuery(function () {
+jQuery(function() {
+	console.log("Print")
+	$('#speciality').on('keyup', function (e) {
+    
+    if (e.keyCode == 13) {
+    	e.preventDefault();
+		$('#tagsHol').append('<div class="chip">'+$('#speciality').val()+'<i class="close material-icons">close</i></div>');
+    }
+	});
 	$('#skill').on('keyup', function (e) {
     if (e.keyCode == 13) {
     	e.preventDefault();
