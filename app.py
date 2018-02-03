@@ -78,6 +78,9 @@ def updateProfile():
 
 @app.route('/profile', methods=['GET'])
 def profile():
+	lang =root.child('users').child(session['username']).child('languages').get()
+	if lang is not None:
+		return render_template('profile.html', languages = lang)
 	return render_template('profile.html')
 @app.route('/createUser', methods = ['POST'])
 def createUser():
