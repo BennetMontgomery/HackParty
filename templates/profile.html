@@ -47,7 +47,7 @@
 			        </div>
 			        <div class="row">
 			        	<div class="col s12 offset-s6">
-			    			<button class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left">check</i></button>
+			    			<button onclick="saveTags()" class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left">check</i></button>
 			    		</div>
 			    	</div>
 			      </div>
@@ -240,5 +240,22 @@ minLength: 1, // The minimum length of the input for the autocomplete to start. 
    $(document).ready(function() {
     $('select').material_select();
   });
+    function saveTags() {
+	var children = document.getElementById('tagsHolder').children;
+	var allKids = [];
+	for (var i = 0; i < children.length; i++) {
+		allKids.push(children[i].innerHTML.replace('<i class="close material-icons">close</i>', ""));
+	}
+	var form = document.createElement("form");
+    form.setAttribute("method", "POST");
+    form.setAttribute("action", "/updatelanguages");
+	var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "data");
+            hiddenField.setAttribute("value", allKids);
+	form.appendChild(hiddenField);
+	document.body.appendChild(form);
+    form.submit();
+  }
     </script>
 </body>

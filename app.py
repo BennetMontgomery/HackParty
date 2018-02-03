@@ -42,6 +42,7 @@ def login():
 		return render_template("index.html")
 	if exists(request.form['username'], request.form['password']):
 		session['logged_in'] = True
+		session['username'] = request.form['username']
 		return render_template("profile.html")
 	if not 'logged_in' in session:
 		return render_template('index.html')
@@ -99,6 +100,16 @@ def teams():
 @app.route("/portal")
 def portal():
 	return render_template("portal.html")
+
+	
+@app.route("/updatelanguages", methods=['POST'])
+def updatelanguages():
+	if not 'logged_in' in session:
+		if not session['logged_in']:
+			return render_template('index.html')
+	skills = request.form['data']
+	root.child('users').child(session['username']).child('languages').set(skills)
+	return render_template("profile.html")
 
 if __name__ == '__main__':
 	app.run(debug=True)
