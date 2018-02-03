@@ -62,7 +62,7 @@ def index():
 def signup():
 	if 'logged_in' in session:
 		if session['logged_in']:
-			return redirect('profile.html')
+			return redirect('profile')
 	return render_template('signup.html')
 
 
