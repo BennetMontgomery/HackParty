@@ -38,6 +38,8 @@ def exists(username, password):
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+	if request.form['username'] == "" or request.form['password'] == "":
+		return render_template("index.html")
 	if exists(request.form['username'], request.form['password']):
 		session['logged_in'] = True
 		return render_template("profile.html")
