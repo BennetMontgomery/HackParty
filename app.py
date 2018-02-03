@@ -27,12 +27,12 @@ all_users = dbl.child("users").get(user['idToken'])
 
 
 def exists(username, password):
-	for user in all_users.each():
-		details = user.val()
-		if details['username'] == username and details['password'] == password:
-			session['username'] = username
-			session['name'] = details['firstname'] +" " + details['lastname']
-			return True
+	userb = root.child('users').child(username).get()
+	if userb is None:
+		return False
+	flash(userb.get("username"))
+	if password == userb.get('password'):
+		return True
 	return False
 
 

@@ -30,35 +30,35 @@
 
       <div class="row">
         <div class="input-field col s6">
-          <input name="firstname" placeholder="Alan" id="first_name" type="text" class="validate">
+          <input name="firstname" placeholder="Alan" id="first_name" type="text" class="validate" required>
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input name="lastname" placeholder="Ableson" id="last_name" type="text" class="validate">
+          <input name="lastname" placeholder="Ableson" id="last_name" type="text" class="validate" required>
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input name="username" placeholder="Alan420" id="username" type="text" class="validate">
+          <input name="username" placeholder="Alan420" id="username" type="text" class="validate" required>
           <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input name="email" placeholder="alanprof@queensu.ca" id="email" type="email" class="validate" required="true">
+          <input name="email" placeholder="alanprof@queensu.ca" id="email" type="email" class="validate" required="true" required>
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input name="password" placeholder="************" id="password" type="password" class="validate">
+          <input name="password" placeholder="************" id="password" type="password" class="validate" required>
           <label for="password">Password (more than 7 characters)</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input name="confirm" placeholder="************" id="confirmPassword" type="password" class="validate">
+          <input name="confirm" placeholder="************" id="confirmPassword" type="password" class="validate" required> 
           <label for="confirmPassword">Confirm Password</label>
         </div>
       </div>
@@ -66,7 +66,7 @@
       <br>
       <div class="row">
       <a href="index" class="waves-effect waves-light btn-large orange darken-2" style="margin-right: 20em"><i class="material-icons left">arrow_back</i>Back</a>
-      <button class="waves-effect waves-light btn-large disabled" id="submit" style="background-color: #80006f" onclick="sendRegister()"><i class="material-icons left" type="submit">send</i>Submit</button>
+      <button class="waves-effect waves-light btn-large disabled" id="submit" style="background-color: #80006f" onclick="Register()"><i class="material-icons left" type="submit">send</i>Submit</button>
     </div>
     </form>
     </div>
