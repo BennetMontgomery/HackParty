@@ -29,8 +29,6 @@ all_users = dbl.child("users").get(user['idToken'])
 def exists(username, password):
 	for user in all_users.each():
 		details = user.val()
-		if details['password'] == "":
-			return False
 		if details['username'] == username and details['password'] == password:
 			session['username'] = username
 			session['name'] = details['firstname'] +" " + details['lastname']
