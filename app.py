@@ -90,12 +90,17 @@ def createUser():
 	userData = {"firstname":request.form['firstname'], "lastname":request.form['lastname'], "username": request.form['username'], "email":request.form['email'], "password": request.form['password']}
 	root.child('users').child(request.form['username']).set(userData)
 	session['name'] = request.form['firstname']+" "+request.form['lastname']
-	return redirect("user")
+	return redirect("profile")
 @app.route("/logout")
 def logout():
 	session.clear()
 	return redirect("index")
 
+@app.route("/teams")
+def teams():
+	users = root.child('users').get()
+	flash(users)
+	return render_template("teams.html", data = users)
 @app.route("/portal")
 def portal():
 	return render_template("portal.html")
