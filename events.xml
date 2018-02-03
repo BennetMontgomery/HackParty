@@ -3,55 +3,51 @@
 
 
 	<event>
-		<id>1</id>
 		<name>XML Events</name>
 		<startdate>2018-1-28=7</startdate>
 		<enddate>2018-1-3=28</enddate>
-		<starttime>12:00</starttime>
+		<location>12:00</location>
 		<endtime>2:00</endtime>
 		<color>#ffb128</color>
-		<url>https://conuhacks.io/</url>
+		<url></url>
 	</event>
 
 	<event>
-		<id>2</id>
 		<name>Another Event</name>
 		<startdate>2017-1-10</startdate>
 		<enddate></enddate>
-		<starttime></starttime>
+		<location></location>
 		<endtime></endtime>
 		<color>#28cbff</color>
 		<url></url>
 	</event>
 
 	<event>
-		<id>3</id>
 		<name>Another Event</name>
 		<startdate>2017-1-20</startdate>
 		<enddate>2017-1-22</enddate>
-		<starttime>9:00</starttime>
+		<location>9:00</location>
 		<endtime>10:00</endtime>
 		<color>#9cc370</color>
 		<url></url>
 	</event>
 
 	<event>
-		<id>4</id>
 		<name>Another Event</name>
 		<startdate>2017-2-20</startdate>
 		<enddate></enddate>
-		<starttime></starttime>
+		<location></location>
 		<endtime></endtime>
 		<color>#9f4b99</color>
 		<url></url>
 	</event>
 
 	<event>
-		<id>5</id>
+
 		<name>Another Event</name>
 		<startdate>2017-3-10</startdate>
 		<enddate>2017-3-11</enddate>
-		<starttime>9:00</starttime>
+		<location>9:00</location>
 		<endtime>10:00</endtime>
 		<color>#9cc370</color>
 		<url></url>
@@ -62,7 +58,7 @@
 		<name>Another Event</name>
 		<startdate>2017-4-5</startdate>
 		<enddate>2017-4-7</enddate>
-		<starttime></starttime>
+		<location></location>
 		<endtime></endtime>
 		<color>#9f4b99</color>
 		<url></url>

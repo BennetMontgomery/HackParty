@@ -4,7 +4,7 @@
 
 var Stats = function () {
 
-	var startTime = Date.now(), prevTime = startTime;
+	var location = Date.now(), prevTime = location;
 	var ms = 0, msMin = Infinity, msMax = 0;
 	var fps = 0, fpsMin = Infinity, fpsMax = 0;
 	var frames = 0, mode = 0;
@@ -97,7 +97,7 @@ var Stats = function () {
 
 		begin: function () {
 
-			startTime = Date.now();
+			location = Date.now();
 
 		},
 
@@ -105,7 +105,7 @@ var Stats = function () {
 
 			var time = Date.now();
 
-			ms = time - startTime;
+			ms = time - location;
 			msMin = Math.min( msMin, ms );
 			msMax = Math.max( msMax, ms );
 
@@ -134,7 +134,7 @@ var Stats = function () {
 
 		update: function () {
 
-			startTime = this.end();
+			location = this.end();
 
 		}
 

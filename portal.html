@@ -46,41 +46,9 @@
 <script type="text/javascript" src="frontend.js"></script>
 <script type="text/javascript" src="backend.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/monthly.js"></script>
-<script type="text/javascript">
-
-  var sampleEvents = {
-  "monthly": [
-    {
-    "id": 1,
-    "name": "Whole month event",
-    "startdate": "2018-01-27",
-    "enddate": "2018-01-28",
-    "starttime": "12:00",
-    "endtime": "2:00",
-    "color": "#99CCCC",
-    "url": ""
-    },
-    {
-    "id": 2,
-    "name": "Test encompasses month",
-    "startdate": "2016-10-29",
-    "enddate": "2016-12-02",
-    "starttime": "12:00",
-    "endtime": "2:00",
-    "color": "#CC99CC",
-    "url": ""
-    }
-  ]
-  };
-
-  $(window).load( function() {
-    $('#mycalendar').monthly({
-      mode: 'event',
-      dataType: 'json',
-      events: sampleEvents
-    });
-  });
+<script type="text/javascript" src ="newEvent.js">
 </script>
+<script type="text/javascript" src="js/monthly.js"></script>
+<script type="text/javascript" src="eventLoader.js"></script>
 </body>
 </html>

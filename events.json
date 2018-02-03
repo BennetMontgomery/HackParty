@@ -5,7 +5,7 @@
       "name": "This is a JSON event",
       "startdate": "2016-9-15",
       "enddate": "2016-9-18",
-      "starttime": "12:00",
+      "location": "Pyongyang",
       "endtime": "2:00",
       "color": "#FFB128",
       "url": ""
@@ -15,7 +15,7 @@
       "name": "This is a JSON event",
       "startdate": "2016-10-15",
       "enddate": "",
-      "starttime": "12:00",
+      "location": "Pyongyang",
       "endtime": "2:00",
       "color": "#EF44EF",
       "url": ""
