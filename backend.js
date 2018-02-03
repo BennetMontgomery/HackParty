@@ -40,6 +40,7 @@ function userNameIsValid(userName) {
 	}
 
 	return true;
+<<<<<<< HEAD
 }
 
 function userNameMatchesPassword(userName, password) {
@@ -54,3 +55,16 @@ function userNameMatchesPassword(userName, password) {
 
 var user = new User("B", "M", "been", "dontmineatnight@mojang.gov", "password");
 submitUser(user);
+=======
+}
+
+function userNameMatchesPassword(userName, password) {
+	for(var i = 0; i < userList.length; i++) {
+		if(userList[i].userName === username && userList[i].password === password) {
+			return true;
+		}
+	}
+
+	return false;
+}
+>>>>>>> 8bdddea0ac737447c9ece39208cbb92586243073
