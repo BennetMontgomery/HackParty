@@ -81,7 +81,16 @@ def updateProfile():
 @app.route('/user', methods=['GET'])
 def user():
     return render_template('profile.html')
-
+@app.route('/createUser', methods = ['POST'])
+def createUser():
+	userCheck = root.child('users').child(request.form['username']).get()
+	if userCheck is not None:
+		return render_template("signup.html", error="username taken")
+	userData = {"firstname":request.form['firstname'], "lastname":request.form['lastname'], "username": request.form['username'], "email":request.form['email'], "password": request.form['password']}
+	root.child('users').child(request.form['username']).set(userData)
+	return redirect("user")
+@app.route('/updatetiles', method =['POST'])
+def updatetiles():
 
 @app.route("/logout")
 def logout():

@@ -8,6 +8,9 @@
 </head>
 
 <body>
+{% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
@@ -27,39 +30,39 @@
         	</div>
         	<div class="row">
         	<div class="row"></div>
-    <form class="col s12" id="contact_form" method="POST", action="{{ url_for('user') }}">
+    <form class="col s12" id="contact_form" method="POST", action="{{ url_for('createUser') }}">
 
       <div class="row">
         <div class="input-field col s6">
-          <input value="" placeholder="Alan" id="first_name" type="text" class="validate">
+          <input name="firstname" placeholder="Alan" id="first_name" type="text" class="validate">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input value="" placeholder="Ableson" id="last_name" type="text" class="validate">
+          <input name="lastname" placeholder="Ableson" id="last_name" type="text" class="validate">
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input value="" placeholder="Alan420" id="username" type="text" class="validate">
+          <input name="username" placeholder="Alan420" id="username" type="text" class="validate">
           <label for="username">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input value="" placeholder="alanprof@queensu.ca" id="email" type="email" class="validate" required="true">
+          <input name="email" placeholder="alanprof@queensu.ca" id="email" type="email" class="validate" required="true">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input value="" placeholder="************" id="password" type="password" class="validate">
+          <input name="password" placeholder="************" id="password" type="password" class="validate">
           <label for="password">Password (more than 7 characters)</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input value="" placeholder="************" id="confirmPassword" type="password" class="validate">
+          <input name="confirm" placeholder="************" id="confirmPassword" type="password" class="validate">
           <label for="confirmPassword">Confirm Password</label>
         </div>
       </div>
