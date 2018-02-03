@@ -113,7 +113,7 @@ def updatelanguages():
 			return render_template('index.html')
 	skills = request.form['data']
 	root.child('users').child(session['username']).child('languages').set(skills)
-	return redirect("profile.html")
+	return redirect("profile")
 
 @app.route("/updateuserevents", methods=['POST'])
 def updateuserevents():
