@@ -112,11 +112,13 @@
 			<div class="row">
 			<h2 class="text-align: center">Hacktinerary</h2>
 		      <ul class="collection">
-		      	{% if data == None %}
+		      	{% if data == ('tempHack') %}
 			      <li class="collection-item">You have no events coming up</li>
 			      {% else %}
 			      {% for dataEvent in data.replace(" ","").split(',') %}
+			      {% if dataEvent != ('tempHack') %}
 		      	<li class="collection-item">{{dataEvent}}</li>
+		      	{% endif %}
 		      	{% endfor %}
 		      	{% endif %}
 			</ul>
