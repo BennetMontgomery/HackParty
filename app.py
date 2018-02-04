@@ -101,7 +101,7 @@ def portal():
 	if not 'logged_in' in session:
 		if not session['logged_in']:
 			return render_template('index.html')
-	return render_template("portal.html")
+	return render_template("portal.html", data = "Elle Hacks, MangoHacks")
 
 @app.route("/updatelanguages", methods=['POST'])
 def updatelanguages():
