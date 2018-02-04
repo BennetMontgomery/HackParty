@@ -21,14 +21,15 @@
 {% include 'navbar.html' %}
 <br>
 <br>
-<table class="container striped amber">
+<table class="container striped purple lighten-3 centered">
   <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Languages</th>
-    <th>Specialties</th>
+    <th style="text-align: center;">Name</th>
+    <th style="text-align: center;">Email</th>
+    <th style="text-align: center;">Languages</th>
+    <th style="text-align: center;">Specialties</th>
   </tr>
 {% for row in data %}
+
   <tr>
   <td>{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</td>
     <td><a href="mailto:{{ row[1].get('email') }}">{{ row[1].get('email') }}</a></td>
@@ -38,7 +39,16 @@
     {% else %}
   	<td>{% for language in languagelist.replace(" ","").split(',') %}<div class="chip">{{language}}</div>{% endfor %}</td>
     {% endif %}
+
+
+    {% set specialistList = row[1].get('speciality') %}
+    {% if specialistList is none %}
+    <td>None</td>
+    {% else %}
+    <td>{% for spec in specialistList.replace(" ","").split(',') %}<div class="chip">{{spec}}</div>{% endfor %}</td>
+    {% endif %}
   </tr>
+
 {% endfor %}
 </table>
 <br>
