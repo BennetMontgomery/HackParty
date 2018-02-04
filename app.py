@@ -91,10 +91,16 @@ def logout():
 
 @app.route("/teams")
 def teams():
+	if not 'logged_in' in session:
+		if not session['logged_in']:
+			return render_template('index.html')
 	users = root.child('users').get()
 	return render_template("teams.html", data = users.items())
 @app.route("/portal")
 def portal():
+	if not 'logged_in' in session:
+		if not session['logged_in']:
+			return render_template('index.html')
 	return render_template("portal.html")
 
 @app.route("/updatelanguages", methods=['POST'])
@@ -122,6 +128,20 @@ def updateuserevents():
 		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
 	else:
 		root.child('users').child(session['username']).child('events').child(request.form['data']).set(True)
+
+@app.route("/viewprofile/", methods=['GET'])
+def viewprofile():
+	if not 'logged_in' in session:
+		if not session['logged_in']:
+			return render_template('index.html')
+	user = request.args.get("id")
+	if user == None:
+		return redirect(teams)
+	info = root.child('users').child(user).get()
+	if info is None:
+		return redirect(teams)
+	return render_template("viewprofile.html", username = info.get('username'))
+	
 if __name__ == '__main__':
 	app.run(debug=True)
 
