@@ -2,11 +2,11 @@
   <div class="nav-wrapper orange darken-2">
     <a href="#" class="brand-logo"><img src="{{ url_for('static', filename='images/logo.png') }}" style="height: 2em; padding-left: 0.3em"></a>
     <ul id="nav-mobile" class="right hide-on-and-down">
-      <li><a href="profile">Profile</a></li>
-      <li><a href="portal">Calendar</a></li>
+      <li><a href="{{url_for('profile')}}">Profile</a></li>
+      <li><a href="{{url_for('portal')}}">Calendar</a></li>
       <li><a href="">Past Events</a></li>
-	  <li><a href="teams">Teams</a></li>
-	  <li><a href="logout">Log out</a></li>
+	  <li><a href="{{url_for('teams')}}">Teams</a></li>
+	  <li><a href="{{url_for('logout')}}">Log out</a></li>
     </ul>
   </div>
  </nav> 
