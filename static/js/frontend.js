@@ -37,9 +37,9 @@ $('#password, #confirmPassword').on('keyup', function() {
 });
 
 function colourer(){
-	var col=["red", "green", "blue", "white", "orange", "pink", "purple", 
-	"deep-purple", "indigo", "cyan", "teal", "light-blue", 
-	"light-green", "lime", "amber", "brown", "blue-grey"];
+	var col=["red", "green", "blue", "antiquewhite", "orange", "pink", "purple", 
+	"darkmagenta", "indigo", "cyan", "teal", "deepskyblue", 
+	"lightgreen", "lime", "amber", "brown", "lightsteelblue"];
 	var a = "";
 	a=Math.floor(Math.random()*18);
 	document.getElementByClass('looper').classList.add('"'+col[a]+'"');
