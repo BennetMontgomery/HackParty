@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
 <!--   <link rel="stylesheet" type="text/css" href="style.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/monthly.css') }}"/>
-  <input type="hidden" id ="hackathons">{{data}}</id>
+  <input type="hidden" id ="hackathons" value="{{data}}">
 </head>
 
 <body>
@@ -42,5 +42,9 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/scriptInjector.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/monthly.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/eventLoader.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/scriptInjector.js') }}"></script>
+<script type = "text/javascript">$( document ).ready(function() {
+});
+    console.log( document.getElementById('hackathons').value.split(", ") );</script>
 </body>
 </html>

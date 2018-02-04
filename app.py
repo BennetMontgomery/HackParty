@@ -127,7 +127,9 @@ def updateuserevents():
 	if hacks is not None:
 		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
 	else:
-		root.child('users').child(session['username']).child('events').child(request.form['data']).set(True)
+		root.child('users').child(session['username']).child('events').child(request.form['data']).set({"works":True})
+
+	return render_template("portal.html")
 
 @app.route("/viewprofile/", methods=['GET'])
 def viewprofile():
@@ -141,8 +143,6 @@ def viewprofile():
 	if info is None:
 		return redirect(teams)
 	return render_template("viewprofile.html", username = info.get('username'))
-	
+
 if __name__ == '__main__':
 	app.run(debug=True)
-
-

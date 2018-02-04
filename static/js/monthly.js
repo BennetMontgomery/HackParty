@@ -232,8 +232,8 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				dayEndTags = "</span></a>";
 			}
 
-	var col=["red", "green", "blue", "antiquewhite", "orange", "pink", "purple", 
-				"darkmagenta", "indigo", "cyan", "teal", "deepskyblue", 
+	var col=["red", "green", "blue", "antiquewhite", "orange", "pink", "purple",
+				"darkmagenta", "indigo", "cyan", "teal", "deepskyblue",
 				"lightgreen", "lime", "gold", "brown", "lightsteelblue"];
 	var a = "";
 	a=Math.floor(Math.random()*18);
@@ -281,10 +281,25 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				  return Math.random().toString(36).substr(2, 9);
 				};
 				var randomId = ID();
-				console.log('<div style="background: white; border:3px solid ' + col[a] +'; padding: 2em" class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>')
-				$(parent + ' .monthly-list-item[data-number="' + index + '"]')
+
+				var hackathons = document.getElementById('hackathons').value.split(", ");
+				var found = false;
+				for(var i = 0; i < hackathons.length; i++) {
+					if(hackathons[i] == eventTitle) {
+						found = true;
+					}
+				}
+
+				if(found) {
+					$(parent + ' .monthly-list-item[data-number="' + index + '"]')
 					.addClass("item-has-event")
-					.append('<div style="background: white; border:3px solid ' + col[a] +'; padding: 2em" class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
+					.append('<div style="background: white; border:3px solid ' + col[a] +'; padding: 2em" class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align green"' + ' value=' + eventTitle +'><i class="material-icons left">check</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
+				} else {
+					$(parent + ' .monthly-list-item[data-number="' + index + '"]')
+					.addClass("item-has-event")
+					.append('<div style="background: white; border:3px solid ' + col[a] +'; padding: 2em" class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"' + ' value=' + eventTitle +'><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
+
+				}
 			}
 		}
 
