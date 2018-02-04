@@ -8,16 +8,6 @@
 </head>
 
 <body>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
 {% include 'navbar.html' %}
 <br>
 <br>
@@ -31,7 +21,7 @@
 {% for row in data %}
 
   <tr>
-  <td>{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</td>
+  <td><a href="viewprofile/?id={{ row[1].get('username') }}">{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</a></td>
     <td><a href="mailto:{{ row[1].get('email') }}">{{ row[1].get('email') }}</a></td>
     {% set languagelist = row[1].get('languages') %}
     {% if languagelist is none %}
