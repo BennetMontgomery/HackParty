@@ -101,9 +101,10 @@ def portal():
 	if not 'logged_in' in session:
 		if not session['logged_in']:
 			return render_template('index.html')
-	data = []
+	data = ""
 	for values in root.child('users').child(session['username']).child('events').get():
-		data.append(values)
+		data += (values) +", "
+	data= data[:-2]
 	return render_template("portal.html", data = data)
 
 @app.route("/updatelanguages", methods=['POST'])
