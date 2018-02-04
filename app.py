@@ -150,8 +150,9 @@ def viewprofile():
 	info = root.child('users').child(user).get()
 	if info is None:
 		return redirect(teams)
-	spec = root.child('users').child(session['username']).child('speciality').get()
-	return render_template("viewprofile.html", speciality = spec, username = info.get('username'))
+	spec = root.child('users').child(user).child('speciality').get()
+	lang = root.child('users').child(user).child('languages').get()
+	return render_template("viewprofile.html", speciality = spec, languages = lang, username = info.get('username'))
 
 if __name__ == '__main__':
 	app.run(debug=True)

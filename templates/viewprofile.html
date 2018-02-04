@@ -26,12 +26,14 @@
 			    <div class="col s12">
 			      <div class="row">
 			        <div class="input-field col s12">
-			          
+			        	{% if languages is none %}
+			        	<p>No languages yet :/</p>
+			        	{% else %}
+			        	<p>{% for langer in languages.replace(" ","").split(',') %}<div class="chip">{{langer}}</div> {% endfor %}</p>
+			        	{% endif %}			          
 			        </div>
-			        
-			      </div>
-			    </div>
-			    
+			      </div>			        	
+			    </div>			    
 			</div>
 		  </div>
 		 <div class="col s4 offset-s2">
@@ -39,6 +41,11 @@
  				<div class="row">
 			    <div class="col s12">
 			      <div class="row">
+			      	{% if speciality is none %}
+			        	<p>No specialities yet :/</p>
+			        	{% else %}
+			        	<p>{% for spec in speciality.replace(" ","").split(',') %}<div class="chip">{{spec}}</div> {% endfor %}</p>
+			        	{% endif %}
 			      </div>
 			  </div>
 			  </div>
@@ -47,15 +54,13 @@
 		<div class="col s3 offset-s1">
 			<h2>Miscellaneous</h2>
   			<div class="input-field col s12">
-			    <label>How many hackathons have you been to?</label>
-			    <br>
-			  </div>
-			 	<div class="input-field col s12">
-			    <label>Which university are you from?</label>
-			    <br>
-			  </div>
-			  <div class="input-field col s12">
-			    <label># of Internships//CS Jobs?</label>
+  				<table class="bordered">
+  					<tr class="white-text purple" >
+  						<th>{{username}} went to these many hackathons!</th>
+  						<th>{{username}} is from this university</th>
+  						<th>{{username}} has had this many internships//jobs and/or cool projects!</th>
+  					</tr>
+  				</table>
 			  </div>
 			</div>
 		</div>
