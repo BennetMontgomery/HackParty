@@ -101,7 +101,10 @@ def portal():
 	if not 'logged_in' in session:
 		if not session['logged_in']:
 			return render_template('index.html')
-	return render_template("portal.html", data = "Elle Hacks, MangoHacks")
+	data = []
+	for values in root.child('users').child(session['username']).child('events').get():
+		data.append(values)
+	return render_template("portal.html", data = data)
 
 @app.route("/updatelanguages", methods=['POST'])
 def updatelanguages():
@@ -124,10 +127,15 @@ def updateSpec():
 @app.route("/updateuserevents", methods=['POST'])
 def updateuserevents():
 	hacks = root.child('users').child(session['username']).child('events').get(request.form['data'])
-	if hacks is not None:
-		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
+	if hacks[0] is request.form['data']:
+		root.child('users').child(session['username']).child('events').delete(request.form['data'])
 	else:
-		root.child('users').child(session['username']).child('events').child(request.form['data']).set({"works":True})
+		root.child('users').child(session['username']).child('events').child(request.form['data']).set(request.form['data'])
+#	if hacks[0] is not None:
+#		flash("hacks not none")
+#		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
+#	else:
+#		flash("hacks none")
 
 	return render_template("portal.html")
 

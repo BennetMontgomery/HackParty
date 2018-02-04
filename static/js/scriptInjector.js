@@ -13,6 +13,7 @@ function changeButton(buttonID) {
 	            hiddenField.setAttribute("type", "hidden");
 	            hiddenField.setAttribute("name", "data");
 	            hiddenField.setAttribute("value", $('#'+buttonID)[0].value);
+		console.log($('#'+buttonID)[0].value);
 		form.appendChild(hiddenField);
 		document.body.appendChild(form);
 	    form.submit();
@@ -28,6 +29,7 @@ function changeButton(buttonID) {
 	            hiddenField.setAttribute("type", "hidden");
 	            hiddenField.setAttribute("name", "data");
 	            hiddenField.setAttribute("value", $('#'+buttonID)[0].value);
+		console.log($('#'+buttonID)[0].value);
 		form.appendChild(hiddenField);
 		document.body.appendChild(form);
 	    form.submit();
