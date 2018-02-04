@@ -128,8 +128,8 @@ def updateSpec():
 @app.route("/updateuserevents", methods=['POST'])
 def updateuserevents():
 	hacks = root.child('users').child(session['username']).child('events').get(request.form['data'])
-	if hacks[0] is request.form['data']:
-		root.child('users').child(session['username']).child('events').delete(request.form['data'])
+	if request.form['data'] in hacks[0]:
+		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
 	else:
 		root.child('users').child(session['username']).child('events').child(request.form['data']).set(request.form['data'])
 #	if hacks[0] is not None:
