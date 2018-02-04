@@ -1,13 +1,13 @@
 function mineGold(buttonID) {
-	console.log(buttonID)
-	if (buttonID.classList.contains("gray")) {
-		buttonID.classList.remove("gray")
-		buttonID.classList.add("green")
-		buttonID.innerHTML = "<i class=\"material-icons left\">check</i>"
+	console.log($('#'+buttonID))
+	if ($('#'+buttonID)[0].classList.contains("gray")) {
+		$('#'+buttonID)[0].classList.remove("gray")
+		$('#'+buttonID)[0].classList.add("green")
+		$('#'+buttonID)[0].innerHTML = "<i class=\"material-icons left\">check</i>"
 	}
 	else {
-		buttonID.classList.remove("green")
-		buttonID.classList.add("gray")
-		buttonID.innerHTML = "<i class=\"material-icons left\">add_circle_outline</i>"
+		$('#'+buttonID)[0].classList.remove("green")
+		$('#'+buttonID)[0].classList.add("gray")
+		$('#'+buttonID)[0].innerHTML = "<i class=\"material-icons left\">add_circle_outline</i>"
 	}
 }
