@@ -263,17 +263,10 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							)
 						+ "><span>" + (doShowTitle ? eventTitle : "") + dayEndTags);
 				// Add to event list
-				var attending = true;
-				if (!attending) {
-					$(parent + ' .monthly-list-item[data-number="' + index + '"]')
-						.addClass("item-has-event")
-						.append('<div class="row" id="minecraft"><div class="col s1 center-align"><button onclick="mineGold()" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
-				}
-				else {
-					$(parent + ' .monthly-list-item[data-number="' + index + '"]')
-						.addClass("item-has-event")
-						.append('<div class="row" id="minecraft"><div class="col s1 center-align"><button onclick="mineGold()" class="waves-effect waves-light btn-floating center-align green"><i class="material-icons left">check</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
-				}
+				var tempId = "" + index;
+				$(parent + ' .monthly-list-item[data-number="' + index + '"]')
+					.addClass("item-has-event")
+					.append('<div class="row" id="minecraft"><div class="col s1 center-align"><button id="' + 'mine' + index + '" onclick="mineGold(' + "mine" + tempId + ')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
 			}
 		}
 
