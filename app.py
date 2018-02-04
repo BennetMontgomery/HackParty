@@ -100,7 +100,12 @@ def teams():
 		if not session['logged_in']:
 			return render_template('index.html')
 	users = root.child('users').get()
-	return render_template("teams.html", data = users.items())
+	data = ""
+	for values in root.child('users').child(session['username']).child('events').get():
+		data += (values) +", "
+	data= data[:-2]
+	return render_template("teams.html", userData = users.items(), data = data)
+
 @app.route("/portal")
 def portal():
 	if not 'logged_in' in session:
@@ -170,11 +175,12 @@ def viewprofile():
 		return redirect(teams)
 	spec = root.child('users').child(user).child('speciality').get()
 	lang = root.child('users').child(user).child('languages').get()
+	school = root.child('users').child(user).child('school').get()
 	data = ""
 	for values in root.child('users').child(user).child('events').get():
 		data += (values) +", "
 	data= data[:-2]
-	return render_template("viewprofile.html", speciality = spec, languages = lang, username = info.get('username'), data=data)
+	return render_template("viewprofile.html", speciality = spec, languages = lang, username = info.get('username'), school=school, data=data)
 
 
 if __name__ == '__main__':

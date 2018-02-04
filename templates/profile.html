@@ -76,13 +76,13 @@
 			  </div>
 		  </div>
 		</div>
-		<form>
+		<form action="{{ url_for('addSchool') }}" method="POST">
 		<div class="row">
 			<h2 class="text-align: center">School</h2>
   			<div class="input-field col s12">
 
     			<i class="material-icons prefix">textsms</i>
-			          <input type="text" class="autocomplete" autocomplete="off" id="school" required>
+			          <input name="school" type="text" class="autocomplete" autocomplete="off" id="school" required>
 			          <label for="school">What school do you attend?</label>
 			        </div>
 			      </div>
@@ -123,7 +123,6 @@
 </div>
 <br>
 <br>
-{%include 'footer.html'%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/frontend.js') }}"></script>
@@ -525,3 +524,19 @@
   }
     </script>
 </body>
+<footer class="page-footer orange darken-2">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        <img src="{{ url_for('static', filename='images/logo.png') }}">
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+            <div class="container">
+              <div class=" center-align">
+                © 2018
+              </div>
+            </div>
+          </div>
+</footer>

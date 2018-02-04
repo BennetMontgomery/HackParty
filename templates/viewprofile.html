@@ -14,8 +14,12 @@
 	<br>
 	<br>
 	<img src="{{ url_for('static', filename='images/materialicon1.jpg') }}" style="height: 20em; width: 20em;" class="circle">
+	<div class="row" style="font-size:24px; padding-top: 1em">
+		{% if school is not none %}
+			{{school}}
+		{% endif %}
+	</div>
 </div>
-<br>
 <div class="container center-align">
 	<h1 id="username">Say hi to {{username}}!</h1>
 </div>
@@ -24,60 +28,38 @@
 	<div class="row">
 		<div class="col s4 offset-s1">
 			<h2 class="text-align: center">Languages</h2>
-			<div class="row">
-			    <div class="col s12">
-			      <div class="row">
-			        <div class="input-field col s12">
-			        	{% if languages is none %}
-			        	<p>No languages yet :/</p>
-			        	{% else %}
-			        	<p>{% for langer in languages.replace(" ","").split(',') %}<div class="chip">{{langer}}</div> {% endfor %}</p>
-			        	{% endif %}			          
-			        </div>
-			      </div>			        	
-			    </div>			    
+			<div class="row center-align">
+	        	{% if languages is none %}
+	        	<p>No languages yet :/</p>
+	        	{% else %}
+	        	<div>{% for langer in languages.replace(" ","").split(',') %}<div class="chip">{{langer}}</div>{% endfor %}</div>
+	        	{% endif %}			          		        			    
 			</div>
 		  </div>
 		 <div class="col s4 offset-s2">
 				<h2 class="text-align: center">Speciality</h2>
- 				<div class="row">
-			    <div class="col s12">
-			      <div class="row">
+			      <div class="row center-align">
 			      	{% if speciality is none %}
 			        	<p>No specialities yet :/</p>
 			        	{% else %}
-			        	<p>{% for spec in speciality.replace(" ","").split(',') %}<div class="chip">{{spec}}</div> {% endfor %}</p>
+			        	{% for spec in speciality.replace(" ","").split(',') %}<div class="chip">{{spec}}</div>{% endfor %}
 			        	{% endif %}
 			      </div>
-			  </div>
-			  </div>
 		  </div>
 		</div>
-		<div class="col s3 offset-s1">
-			<h2>Miscellaneous</h2>
-  			<div class="input-field col s12">
-  				<table class="bordered">
-  					<tr class="white-text purple" >
-  						<th>{{username}} went to these many hackathons!</th>
-  						<th>{{username}} is from this university</th>
-  						<th>{{username}} has had this many internships//jobs and/or cool projects!</th>
-  					</tr>
-  				</table>
-			  </div>
-			</div>
-			<br>
-			<br>
-			<div class="col s3 offset-s1">
-			<h2>Hacktinerary</h2>
+			<div class="row center-align">
+			<h2 class="text-align: center">Hacktinerary</h2>
 		      <ul class="collection">
-			      {% if data == None %}
-			      <li class="collection-item">You have no events coming up</li>
+		      	{% if data == ('tempHack') %}
+			      <li style="font-size:24px" class="collection-item">You have no events coming up</li>
 			      {% else %}
 			      {% for dataEvent in data.replace(" ","").split(',') %}
-		      	<li class="collection-item">{{dataEvent}}</li>
+			      {% if dataEvent != ('tempHack') %}
+		      	<li style="font-size:24px" class="collection-item">{{dataEvent}}</li>
+		      	{% endif %}
 		      	{% endfor %}
 		      	{% endif %}
-		      				</ul>
+			</ul>
 		</div>
 		<br>
 		<br>
@@ -86,7 +68,7 @@
 </div>
 <br>
 <br>
-{%include 'footer.html'%}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/frontend.js') }}"></script>
@@ -103,3 +85,19 @@
   });
     </script>
 </body>
+<footer class="page-footer orange darken-2">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        <img src="{{ url_for('static', filename='images/logo.png') }}">
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+            <div class="container">
+              <div class=" center-align">
+                © 2018
+              </div>
+            </div>
+          </div>
+</footer>

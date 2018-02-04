@@ -11,16 +11,17 @@
 {% include 'navbar.html' %}
 <br>
 <br>
-<table class="container striped purple lighten-3 centered">
-  <tr>
-    <th style="text-align: center;">Name</th>
-    <th style="text-align: center;">Email</th>
-    <th style="text-align: center;">Languages</th>
-    <th style="text-align: center;">Specialties</th>
+<table class="container striped light-gray white centered">
+  <tr style="background-color: #80006f">
+    <th style="text-align: center; color: white">Name</th>
+    <th style="text-align: center; color: white">Email</th>
+    <th style="text-align: center; color: white">Languages</th>
+    <th style="text-align: center; color: white">Specialties</th>
+    <th style="text-align: center; color: white">Events</th>
   </tr>
-{% for row in data %}
-  <tr>
-  <td><a>{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</a></td>
+{% for row in userData %}
+  <tr style="border:1px solid">
+  <td "><a href="viewprofile/?id={{ row[1].get('username') }}">{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</a></td>
     <td><a href="mailto:{{ row[1].get('email') }}">{{ row[1].get('email') }}</a></td>
     {% set languagelist = row[1].get('languages') %}
     {% if languagelist is none %}
@@ -33,9 +34,21 @@
     {% set specialistList = row[1].get('speciality') %}
     {% if specialistList is none %}
     <td>None</td>
+
     {% else %}
-    <td>{% for spec in specialistList.replace(" ","").split(',') %}<div class="chip">{{spec}}</div>{% endfor %}</td>
-    {% endif %}
+    <td>{% for spec in specialistList.replace(" ","").split(',') %}<div class="chip">{{spec}}</div>{% endfor %}{% endif %}</td>
+    <td> {% if row[1].get('events')|length > 1 %}
+          {% for event in row[1].get('events') %}
+          {% if event != 'tempHack'%}
+            [{{event}}]
+          {% endif %}
+          {% endfor %}
+          {% else %}
+          None
+        {% endif %}
+    </td>
+
+
   </tr>
 
 {% endfor %}

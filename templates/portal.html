@@ -22,10 +22,6 @@
   <br>
 
 <div class="monthly" id="mycalendar"></div>
-
-<br>
-<br>
-{%include 'footer.html'%}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
@@ -55,4 +51,21 @@
 });
     console.log( document.getElementById('hackathons').value.split(", ") );</script>
 </body>
+<footer class="page-footer orange darken-2">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        <img src="{{ url_for('static', filename='images/logo.png') }}">
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+            <div class="container">
+              <div class=" center-align">
+                © 2018
+              </div>
+            </div>
+          </div>
+</footer>
 </html>
+
