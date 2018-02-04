@@ -284,7 +284,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				console.log('<div class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>')
 				$(parent + ' .monthly-list-item[data-number="' + index + '"]')
 					.addClass("item-has-event")
-					.append('<div class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
+					.append('<div style="border-color: black; border-style: solid; border: 3px; padding: 1em;" class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
 			}
 		}
 
