@@ -139,7 +139,7 @@ def updateuserevents():
 #		flash("hacks none")
 
 	return redirect("portal")
-@app.route('addSchool', methods=['POST'])
+@app.route('/addSchool', methods=['POST'])
 def addSchool():
 	if not 'logged_in' in session:
 		if not session['logged_in']:
