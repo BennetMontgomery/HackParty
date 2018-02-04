@@ -72,7 +72,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		// Add CSS classes for the primary language and the locale. This allows for CSS-driven
 		// overrides of the language-specific header buttons. Lowercased because locale codes
-		// are case-insensitive but CSS is not.
+		// are case -insensitive but CSS is not.
 		$(parent).addClass("monthly-locale-" + primaryLanguageCode + " monthly-locale-" + locale);
 
 		// Add Header & event list markup
@@ -265,7 +265,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				// Add to event list
 				function uniqueNumber() {
 				    var date = Date.now();
-				   
+
 				    if (date <= uniqueNumber.previous) {
 				        date = ++uniqueNumber.previous;
 				    } else {
@@ -278,13 +278,13 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				uniqueNumber.previous = 0;
 
 				function ID(){
-				  return uniqueNumber();
+				  return Math.random().toString(36).substr(2, 9);
 				};
-				var randomId = ID().toString();
-				console.log('<div class="row" id="minecraft"><div class="col s1 center-align"><button id="' + randomId + '" onclick="mineGold(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>')
+				var randomId = ID();
+				console.log('<div class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>')
 				$(parent + ' .monthly-list-item[data-number="' + index + '"]')
 					.addClass("item-has-event")
-					.append('<div class="row" id="minecraft"><div class="col s1 center-align"><button id="' + randomId + '" onclick="mineGold(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
+					.append('<div class="row"><div class="col s1 center-align"><button id="' + randomId + '" onclick="changeButton(\'' + randomId + '\')" class="waves-effect waves-light btn-floating center-align gray"><i class="material-icons left">add_circle_outline</i></button></div>' + '<div class="col s11">' + markupListEvent + '</div>' + '</div>');
 			}
 		}
 

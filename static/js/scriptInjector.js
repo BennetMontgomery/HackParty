@@ -1,4 +1,4 @@
-function mineGold(buttonID) {
+function changeButton(buttonID) {
 	console.log($('#'+buttonID))
 	if ($('#'+buttonID)[0].classList.contains("gray")) {
 		$('#'+buttonID)[0].classList.remove("gray")
