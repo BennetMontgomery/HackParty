@@ -138,10 +138,7 @@ def updateuserevents():
 
 	hacks = root.child('users').child(session['username']).child('events').get(request.form['data'])
 	if hacks[0] is not None:
-		flash("hacks not none")
 		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
-	else:
-		flash("hacks none")
 	if hacks is None:
 		root.child('users').child(session['username']).child('events').child(request.form['data']).set(request.form['data'])
 	elif request.form['data'] in hacks[0]:

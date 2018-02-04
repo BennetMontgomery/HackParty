@@ -19,9 +19,8 @@
     <th style="text-align: center;">Specialties</th>
   </tr>
 {% for row in data %}
-
   <tr>
-  <td><a href="viewprofile/?id={{ row[1].get('username') }}">{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</a></td>
+  <td><a>{{ row[1].get('firstname') }} {{row[1].get('lastname')}}</a></td>
     <td><a href="mailto:{{ row[1].get('email') }}">{{ row[1].get('email') }}</a></td>
     {% set languagelist = row[1].get('languages') %}
     {% if languagelist is none %}

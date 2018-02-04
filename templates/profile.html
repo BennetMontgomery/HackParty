@@ -78,7 +78,7 @@
 		</div>
 		<form>
 		<div class="row">
-			<h2 class="text-align: center">Miscellaneous</h2>
+			<h2 class="text-align: center">School</h2>
   			<div class="input-field col s12">
 
     			<i class="material-icons prefix">textsms</i>
@@ -86,43 +86,33 @@
 			          <label for="school">What school do you attend?</label>
 			        </div>
 			      </div>
-			        <br>		    
-			    <br>
-			 	<div class="input-field col s12">
-    			<select id="hackers">
-			      <option value="" disabled selected>Choose your option</option>
-			      <option value="1">0</option>
-			      <option value="2">1</option>
-			      <option value="3">2</option>
-			      <option value="4">3</option>
-			      <option value="5">4</option>
-			      <option value="6">5+</option>
-			    </select>
-			    <label>How many hackathons have you been to?</label>
-			    	<br>
 			    	<br>
 			    	<div class="center-align">
 			  <button class="waves-effect waves-light btn-large" id="submit" style="background-color: #80006f"><i class="material-icons left" type="submit">send</i>Submit</button>
 			</form>
-			</div>
-			    <br>
-			  </div>
-			  <br>
-			  <br>
+			<br>
+			<br>
+			<br>
 			<div class="row">
 			<h2 class="text-align: center">Hacktinerary</h2>
 		      <ul class="collection">
 		      	{% if data == ('tempHack') %}
-			      <li class="collection-item">You have no events coming up</li>
+			      <li style="font-size:24px" class="collection-item">You have no events coming up</li>
 			      {% else %}
 			      {% for dataEvent in data.replace(" ","").split(',') %}
 			      {% if dataEvent != ('tempHack') %}
-		      	<li class="collection-item">{{dataEvent}}</li>
+		      	<li style="font-size:24px" class="collection-item">{{dataEvent}}</li>
 		      	{% endif %}
 		      	{% endfor %}
 		      	{% endif %}
 			</ul>
 		</div>
+			</div>
+			    <br>
+			  </div>
+			  <br>
+			  <br>
+			
 		</div>
 		<br>
 		<br>
