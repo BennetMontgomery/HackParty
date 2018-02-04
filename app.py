@@ -66,22 +66,13 @@ def signup():
 	return render_template('signup.html')
 
 
-@app.route('/updateProfile', methods=['POST', 'GET'])
-def updateProfile():
-	if not 'logged_in' in session:
-		if not session['logged_in']:
-			return render_template('index.html')
-	skills = ['java', 'C#']
-	root.child('users').child(session['username']).child('languages').set(skills)
-	return render_template('profile.html', languages =None)
-
-
 @app.route('/profile', methods=['GET'])
 def profile():
 	lang =root.child('users').child(session['username']).child('languages').get()
-	if lang is not None:
-		return render_template('profile.html', languages = lang)
+	spec = root.child('users').child(session['username']).child('speciality').get()
+	return render_template('profile.html', languages = lang, speciality = spec)
 	return render_template('profile.html', languages =None)
+
 @app.route('/createUser', methods = ['POST'])
 def createUser():
 	userCheck = root.child('users').child(request.form['username']).get()
