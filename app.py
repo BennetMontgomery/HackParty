@@ -70,7 +70,11 @@ def signup():
 def profile():
 	lang =root.child('users').child(session['username']).child('languages').get()
 	spec = root.child('users').child(session['username']).child('speciality').get()
-	return render_template('profile.html', languages = lang, speciality = spec)
+	data = ""
+	for values in root.child('users').child(session['username']).child('events').get():
+		data += (values) +", "
+	data= data[:-2]
+	return render_template('profile.html', languages = lang, speciality = spec, data=data)
 	return render_template('profile.html', languages =None)
 
 @app.route('/createUser', methods = ['POST'])
@@ -102,6 +106,9 @@ def portal():
 		if not session['logged_in']:
 			return render_template('index.html')
 	data = ""
+	eventData = root.child('users').child(session['username']).child('events').get()
+	if eventData is None:
+		return render_template("portal.html")
 	for values in root.child('users').child(session['username']).child('events').get():
 		data += (values) +", "
 	data= data[:-2]
@@ -127,16 +134,20 @@ def updateSpec():
 
 @app.route("/updateuserevents", methods=['POST'])
 def updateuserevents():
+
 	hacks = root.child('users').child(session['username']).child('events').get(request.form['data'])
-	if request.form['data'] in hacks[0]:
+	if hacks[0] is not None:
+		flash("hacks not none")
+		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
+	else:
+		flash("hacks none")
+	if hacks is None:
+		root.child('users').child(session['username']).child('events').child(request.form['data']).set(request.form['data'])
+	elif request.form['data'] in hacks[0]:
 		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
 	else:
 		root.child('users').child(session['username']).child('events').child(request.form['data']).set(request.form['data'])
-#	if hacks[0] is not None:
-#		flash("hacks not none")
-#		root.child('users').child(session['username']).child('events').child(request.form['data']).delete()
-#	else:
-#		flash("hacks none")
+
 
 	return redirect("portal")
 @app.route('/addSchool', methods=['POST'])
@@ -161,7 +172,12 @@ def viewprofile():
 		return redirect(teams)
 	spec = root.child('users').child(user).child('speciality').get()
 	lang = root.child('users').child(user).child('languages').get()
-	return render_template("viewprofile.html", speciality = spec, languages = lang, username = info.get('username'))
+	data = ""
+	for values in root.child('users').child(user).child('events').get():
+		data += (values) +", "
+	data= data[:-2]
+	return render_template("viewprofile.html", speciality = spec, languages = lang, username = info.get('username'), data=data)
+
 
 if __name__ == '__main__':
 	app.run(debug=True)

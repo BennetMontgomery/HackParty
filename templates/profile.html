@@ -6,16 +6,6 @@
 </head>
 
 <body>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
 {% include 'navbar.html' %}
 
 <div class="container center-align">
@@ -86,65 +76,55 @@
 			  </div>
 		  </div>
 		</div>
+		<form>
 		<div class="row">
 			<h2 class="text-align: center">Miscellaneous</h2>
   			<div class="input-field col s12">
 
     			<i class="material-icons prefix">textsms</i>
-			          <input type="text" class="autocomplete" autocomplete="off" id="school">
+			          <input type="text" class="autocomplete" autocomplete="off" id="school" required>
 			          <label for="school">What school do you attend?</label>
 			        </div>
-			        <!-- <div id="tagsSchool">
-			        		{% if speciality != none %}
-							{% for spec in speciality.replace(" ","").split(',') %}
-								<div class="chip">{{spec}}<i class="close material-icons">close</i></div>
-							{% endfor %}
-							{% endif %}	        	
-			        </div> -->
-			        <div class="row">
-			        	<div class="col s12 offset-s6">
-			    			<button class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left" onclick="specialTags()">check</i></button>
-			    		</div>
-			    	</div>
-			    
+			      </div>
+			        <br>		    
 			    <br>
-			  </div>
 			 	<div class="input-field col s12">
-    			<select>
+    			<select id="hackers">
 			      <option value="" disabled selected>Choose your option</option>
-			      <option value="1">Queen's University</option>
-			      <option value="2">Concordia University</option>
-			      <option value="3">University of Waterloo</option>
-			      <option value="4">University of Toronto</option>
-			      <option value="5">McGill University</option>
+			      <option value="1">0</option>
+			      <option value="2">1</option>
+			      <option value="3">2</option>
+			      <option value="4">3</option>
+			      <option value="5">4</option>
+			      <option value="6">5+</option>
 			    </select>
-			    <label>Which university are you from?</label>
+			    <label>How many hackathons have you been to?</label>
+			    	<br>
+			    	<br>
+			    	<div class="center-align">
+			  <button class="waves-effect waves-light btn-large" id="submit" style="background-color: #80006f"><i class="material-icons left" type="submit">send</i>Submit</button>
+			</form>
+			</div>
 			    <br>
 			  </div>
-			  <div class="input-field col s12">
-    			<select>
-			      <option value="" disabled selected>Choose your option</option>
-			      <option value="1">1</option>
-			      <option value="2">2</option>
-			      <option value="3">3</option>
-			      <option value="4">4</option>
-			      <option value="5">5+</option>
-			    </select>
-			    <label># of Internships//CS Jobs?</label>
-			  </div>
-			</div>
+			  <br>
+			  <br>
 			<div class="row">
 			<h2 class="text-align: center">Hacktinerary</h2>
 		      <ul class="collection">
-			      <li class="collection-item">n00b</li>
+		      	{% if data == None %}
+			      <li class="collection-item">You have no events coming up</li>
+			      {% else %}
+			      {% for dataEvent in data.replace(" ","").split(',') %}
+		      	<li class="collection-item">{{dataEvent}}</li>
+		      	{% endfor %}
+		      	{% endif %}
 			</ul>
 		</div>
+		</div>
 		<br>
 		<br>
-		<div class="container center-align">
-			 <button class="waves-effect waves-light btn-large" id="send" style="background-color: #80006f" onclick="send()"><i class="material-icons left" type="submit">send</i>Submit</button>
-		</div>
-		</div>
+	</div>
 		
 	</div>
 	</div>	

@@ -55,6 +55,8 @@ function sendRegister() {
 	}
 };
 
+$('#school, #hackers')
+
 function send() {
 	if (userNameMatchesPassword($('#loginUsername').val(), $('#loginPassword').val())) {
 		console.log("XDDD")

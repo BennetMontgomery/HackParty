@@ -6,6 +6,8 @@
 </head>
 
 <body>
+
+
 {% include 'navbar.html' %}
 
 <div class="container center-align">
@@ -68,9 +70,14 @@
 			<div class="col s3 offset-s1">
 			<h2>Hacktinerary</h2>
 		      <ul class="collection">
-			      <li class="collection-item">n00b</li>
-			</ul>
-		</div>
+			      {% if data == None %}
+			      <li class="collection-item">You have no events coming up</li>
+			      {% else %}
+			      {% for dataEvent in data.replace(" ","").split(',') %}
+		      	<li class="collection-item">{{dataEvent}}</li>
+		      	{% endfor %}
+		      	{% endif %}
+		      				</ul>
 		</div>
 		<br>
 		<br>
