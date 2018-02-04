@@ -6,16 +6,6 @@
 </head>
 
 <body>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
 {% include 'navbar.html' %}
 
 <div class="container center-align">
@@ -25,7 +15,7 @@
 </div>
 <br>
 <div class="container center-align">
-	<h1 id="username">Welcome, {{session['username']}}!</h1>
+	<h1 id="username">Say hi to {{session['username']}}!</h1>
 </div>
 <br>
 <div class="container">
@@ -36,23 +26,9 @@
 			    <div class="col s12">
 			      <div class="row">
 			        <div class="input-field col s12">
-			          <i class="material-icons prefix">textsms</i>
-			          <input type="text" id="skill" class="autocomplete" autocomplete="off">
-			          <label for="skill">What's your hacker speak?</label>
+			          
 			        </div>
 			        
-			        <div id="tagsHolder">
-							{% if languages != none %}
-							{% for language in languages.replace(" ","").split(',') %}
-								<div class="chip">{{language}}<i class="close material-icons">close</i></div>
-							{% endfor %}
-							{% endif %}
-					</div>
-			        <div class="row">
-			        	<div class="col s12 offset-s6">
-			    			<button onclick="saveTags()" class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left">check</i></button>
-			    		</div>
-			    	</div>
 			      </div>
 			    </div>
 			    
@@ -63,64 +39,22 @@
  				<div class="row">
 			    <div class="col s12">
 			      <div class="row">
-			        <div class="input-field col s12">
-			          <i class="material-icons prefix">textsms</i>
-			          <input type="text" class="autocomplete" autocomplete="off" id="speciality">
-			          <label for="speciality">What drives you?</label>
-			        </div>
-			        <div id="tagsHol">
-			        		{% if speciality != none %}
-							{% for spec in speciality.replace(" ","").split(',') %}
-								<div class="chip">{{spec}}<i class="close material-icons">close</i></div>
-							{% endfor %}
-							{% endif %}	        	
-			        </div>
-			        <div class="row">
-			        	<div class="col s12 offset-s6">
-			    			<button class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left" onclick="specialTags()">check</i></button>
-			    		</div>
-			    	</div>
 			      </div>
-			    </div>
-			    
+			  </div>
 			  </div>
 		  </div>
 		</div>
 		<div class="col s3 offset-s1">
 			<h2>Miscellaneous</h2>
   			<div class="input-field col s12">
-    			<select>
-			      <option value="" disabled selected>Choose your option</option>
-			      <option value="1">1</option>
-			      <option value="2">2</option>
-			      <option value="3">3</option>
-			      <option value="4">4</option>
-			      <option value="5">5+</option>
-			    </select>
 			    <label>How many hackathons have you been to?</label>
 			    <br>
 			  </div>
 			 	<div class="input-field col s12">
-    			<select>
-			      <option value="" disabled selected>Choose your option</option>
-			      <option value="1">Queen's University</option>
-			      <option value="2">Concordia University</option>
-			      <option value="3">University of Waterloo</option>
-			      <option value="4">University of Toronto</option>
-			      <option value="5">McGill University</option>
-			    </select>
 			    <label>Which university are you from?</label>
 			    <br>
 			  </div>
 			  <div class="input-field col s12">
-    			<select>
-			      <option value="" disabled selected>Choose your option</option>
-			      <option value="1">1</option>
-			      <option value="2">2</option>
-			      <option value="3">3</option>
-			      <option value="4">4</option>
-			      <option value="5">5+</option>
-			    </select>
 			    <label># of Internships//CS Jobs?</label>
 			  </div>
 			</div>
@@ -133,9 +67,6 @@
 		</div>
 		<br>
 		<br>
-		<div class="container center-align">
-			 <button class="waves-effect waves-light btn-large" id="send" style="background-color: #80006f" onclick="send()"><i class="material-icons left" type="submit">send</i>Submit</button>
-		</div>
 	</div>
 	</div>	
 </div>
@@ -149,140 +80,12 @@
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script>
-       $(document).ready(function() {
-$('#skill').autocomplete({
-data: { //TODO -- make this alphabetical!
-"C": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/1200px-The_C_Programming_Language_logo.svg.png",
 
-"JavaScript (Vanilla)": "http://logo-load.com/uploads/posts/2016-09/javascript-logo.png",
-
-"Node.js": "https://nodejs.org/static/images/logo.svg",
-
-"React": 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K',
-
-"Java": "https://logos-download.com/wp-content/uploads/2016/10/Java_logo_icon.png",
-
-"C#": "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png",
-
-"C++": "https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png",
-
-"D": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/D_Programming_Language_logo.svg/1200px-D_Programming_Language_logo.svg.png",
-
-"Go/Golang": "https://d1q6f0aelx0por.cloudfront.net/product-logos/81630ec2-d253-4eb2-b36c-eb54072cb8d6-golang.png",
-
-"python": "https://www.python.org/static/opengraph-icon-200x200.png",
-
-"perl": "https://cdn.perl.org/perlweb/images/icons/header_camel.png",
-
-"php": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1200px-PHP-logo.svg.png",
-
-"HTML5": "https://www.w3.org/html/logo/downloads/HTML5_Logo_128.png",
-
-"scala": "http://www.unixstickers.com/image/data/stickers/scala/Scala-logoText.sh.png",
-
-"Rust": "https://www.rust-lang.org/logos/rust-logo-blk.svg",
-
-"LiveScript": "https://s3.amazonaws.com/github/downloads/gkz/LiveScript/logo.png",
-
-"coffeescript": "http://videotutorialspoint.com/wp-content/uploads/2016/04/coffeescript.png",
-
-"Kotlin": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/2000px-Kotlin-logo.svg.png",
-
-"Haskell": "https://wiki.haskell.org/wikiupload/4/4a/HaskellLogoStyPreview-1.png",
-
-"chapel": "https://chapel-lang.org/images/contest-winner.png",
-
-"red": "https://upload.wikimedia.org/wikipedia/en/e/e9/Red_Language_Tower_Logo.png",
-
-"Ruby": "https://www.vectorlogo.zone/logos/ruby/ruby-card.png",
-
-"Swift": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Swift_logo.svg/2000px-Swift_logo.svg.png",
-
-"TypeScript": "https://camo.githubusercontent.com/364fcc20318b28180fbea3e335792e45caf3d4b2/687474703a2f2f7777772e747970657363726970746c616e672e6f72672f6173736574732f696d616765732f69636f6e732f616e64726f69642d6368726f6d652d313932783139322e706e67",
-
-"MicroPython": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Micropython-logo.svg/2000px-Micropython-logo.svg.png",
-
-"PowerShell": "https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png",
-
-"Prolog": "https://starbeamrainbowlabs.com/images/logos/swi-prolog.svg",
-
-"SQL": "https://hackr.io/tutorials/learn-sql/svg/sql_logo"
-},
-limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-onAutocomplete: function(val) {
-$('#tagsHolder').append('<div class="chip">'+$('#skill').val()+'<i class="close material-icons">close</i></div>');
-},
-minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-});
-		  $('#speciality').autocomplete({
-		    data: {
-				"Blockchain" : null,
-				"Augumented Reality" : null,
-				"Android Apps" : null,
-				"iOS Apps" : null,
-				"UX/UI Design" : null,
-				"Cyber-Security" : null,
-				"Full Stack Web Dev" : null,
-				"Chatbots" : null,
-				"Server-side communication" : null,
-				"Data Mining" : null,
-				"Game Development" : null,
-				"Machine Learning" : null,
-				"Myo" : null,
-				"Arduino" : null,
-				"Raspberry Pi" : null,
-				"Muse" : null,
-				"Drones" : null,
-				"Other IoT Devices" : null
-				},
-		    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-		    onAutocomplete: function(val) {
-		      $('#tagsHol').append('<div class="chip">'+$('#speciality').val()+'<i class="close material-icons">close</i></div>');
-document.getElementById('speciality').val("");
-		    },
-		    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-		  });
-		});
         
     </script>
   <script>
    $(document).ready(function() {
     $('select').material_select();
   });
-    function saveTags() {
-	var children = document.getElementById('tagsHolder').children;
-	var allKids = [];
-	for (var i = 0; i < children.length; i++) {
-		allKids.push(children[i].innerHTML.replace('<i class="close material-icons">close</i>', ""));
-	}
-	var form = document.createElement("form");
-    form.setAttribute("method", "POST");
-    form.setAttribute("action", "/updatelanguages");
-	var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", "data");
-            hiddenField.setAttribute("value", allKids);
-	form.appendChild(hiddenField);
-	document.body.appendChild(form);
-    form.submit();
-  }
-
-  function specialTags(){
-  	var childSpec = document.getElementById('tagsHol').children;
-  	var allSpecKids = [];
-  	for (var i=0; i<childSpec.length; i++){
-  		allSpecKids.push(childSpec[i].innerHTML.replace('<i class="close material-icons">close</i>', ""));
-  	}
-  	var form = document.createElement("form");
-  	form.setAttribute("method", "POST");
-  	form.setAttribute("action", "/updateSpec");
-  	var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", "data");
-            hiddenField.setAttribute("value", allSpecKids);
-	form.appendChild(hiddenField);
-	document.body.appendChild(form);
-    form.submit();
-  }
     </script>
 </body>
