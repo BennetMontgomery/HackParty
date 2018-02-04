@@ -138,8 +138,16 @@ def updateuserevents():
 #	else:
 #		flash("hacks none")
 
-	return render_template("portal.html")
-
+	return redirect("portal")
+@app.route('addSchool', methods=['POST'])
+def addSchool():
+	if not 'logged_in' in session:
+		if not session['logged_in']:
+			return render_template('index.html')
+	skills = request.form['data']
+	root.child('users').child(session['username']).child('languages').set(skills)
+	return redirect("profile")
+	
 @app.route("/viewprofile/", methods=['GET'])
 def viewprofile():
 	if not 'logged_in' in session:
