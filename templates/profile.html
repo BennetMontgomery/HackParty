@@ -86,18 +86,27 @@
 			  </div>
 		  </div>
 		</div>
-		<div class="col s3 offset-s1">
-			<h2>Miscellaneous</h2>
+		<div class="row">
+			<h2 class="text-align: center">Miscellaneous</h2>
   			<div class="input-field col s12">
-    			<select>
-			      <option value="" disabled selected>Choose your option</option>
-			      <option value="1">1</option>
-			      <option value="2">2</option>
-			      <option value="3">3</option>
-			      <option value="4">4</option>
-			      <option value="5">5+</option>
-			    </select>
-			    <label>How many hackathons have you been to?</label>
+
+    			<i class="material-icons prefix">textsms</i>
+			          <input type="text" class="autocomplete" autocomplete="off" id="school">
+			          <label for="school">What school do you attend?</label>
+			        </div>
+			        <!-- <div id="tagsSchool">
+			        		{% if speciality != none %}
+							{% for spec in speciality.replace(" ","").split(',') %}
+								<div class="chip">{{spec}}<i class="close material-icons">close</i></div>
+							{% endfor %}
+							{% endif %}	        	
+			        </div> -->
+			        <div class="row">
+			        	<div class="col s12 offset-s6">
+			    			<button class="waves-effect waves-light btn-floating center-align orange"><i class="material-icons left" onclick="specialTags()">check</i></button>
+			    		</div>
+			    	</div>
+			    
 			    <br>
 			  </div>
 			 	<div class="input-field col s12">
@@ -124,9 +133,8 @@
 			    <label># of Internships//CS Jobs?</label>
 			  </div>
 			</div>
-		</div>
-		<div class="col s3 offset-s1">
-			<h2>Hacktinerary</h2>
+			<div class="row">
+			<h2 class="text-align: center">Hacktinerary</h2>
 		      <ul class="collection">
 			      <li class="collection-item">n00b</li>
 			</ul>
@@ -136,6 +144,8 @@
 		<div class="container center-align">
 			 <button class="waves-effect waves-light btn-large" id="send" style="background-color: #80006f" onclick="send()"><i class="material-icons left" type="submit">send</i>Submit</button>
 		</div>
+		</div>
+		
 	</div>
 	</div>	
 </div>
@@ -149,101 +159,358 @@
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script>
-       $(document).ready(function() {
-$('#skill').autocomplete({
-data: { //TODO -- make this alphabetical!
-"C": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/1200px-The_C_Programming_Language_logo.svg.png",
+	$(document).ready(function() {
+		$('#skill').autocomplete({
+		data: { //TODO -- make this alphabetical!
+		"C": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/1200px-The_C_Programming_Language_logo.svg.png",
 
-"JavaScript (Vanilla)": "http://logo-load.com/uploads/posts/2016-09/javascript-logo.png",
+		"JavaScript (Vanilla)": "http://logo-load.com/uploads/posts/2016-09/javascript-logo.png",
 
-"Node.js": "https://nodejs.org/static/images/logo.svg",
+		"Node.js": "https://nodejs.org/static/images/logo.svg",
 
-"React": 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K',
+		"React": 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K',
 
-"Java": "https://logos-download.com/wp-content/uploads/2016/10/Java_logo_icon.png",
+		"Java": "https://logos-download.com/wp-content/uploads/2016/10/Java_logo_icon.png",
 
-"C#": "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png",
+		"C#": "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png",
 
-"C++": "https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png",
+		"C++": "https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png",
 
-"D": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/D_Programming_Language_logo.svg/1200px-D_Programming_Language_logo.svg.png",
+		"D": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/D_Programming_Language_logo.svg/1200px-D_Programming_Language_logo.svg.png",
 
-"Go/Golang": "https://d1q6f0aelx0por.cloudfront.net/product-logos/81630ec2-d253-4eb2-b36c-eb54072cb8d6-golang.png",
+		"Go/Golang": "https://d1q6f0aelx0por.cloudfront.net/product-logos/81630ec2-d253-4eb2-b36c-eb54072cb8d6-golang.png",
 
-"python": "https://www.python.org/static/opengraph-icon-200x200.png",
+		"python": "https://www.python.org/static/opengraph-icon-200x200.png",
 
-"perl": "https://cdn.perl.org/perlweb/images/icons/header_camel.png",
+		"perl": "https://cdn.perl.org/perlweb/images/icons/header_camel.png",
 
-"php": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1200px-PHP-logo.svg.png",
+		"php": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1200px-PHP-logo.svg.png",
 
-"HTML5": "https://www.w3.org/html/logo/downloads/HTML5_Logo_128.png",
+		"HTML5": "https://www.w3.org/html/logo/downloads/HTML5_Logo_128.png",
 
-"scala": "http://www.unixstickers.com/image/data/stickers/scala/Scala-logoText.sh.png",
+		"scala": "http://www.unixstickers.com/image/data/stickers/scala/Scala-logoText.sh.png",
 
-"Rust": "https://www.rust-lang.org/logos/rust-logo-blk.svg",
+		"Rust": "https://www.rust-lang.org/logos/rust-logo-blk.svg",
 
-"LiveScript": "https://s3.amazonaws.com/github/downloads/gkz/LiveScript/logo.png",
+		"LiveScript": "https://s3.amazonaws.com/github/downloads/gkz/LiveScript/logo.png",
 
-"coffeescript": "http://videotutorialspoint.com/wp-content/uploads/2016/04/coffeescript.png",
+		"coffeescript": "http://videotutorialspoint.com/wp-content/uploads/2016/04/coffeescript.png",
 
-"Kotlin": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/2000px-Kotlin-logo.svg.png",
+		"Kotlin": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/2000px-Kotlin-logo.svg.png",
 
-"Haskell": "https://wiki.haskell.org/wikiupload/4/4a/HaskellLogoStyPreview-1.png",
+		"Haskell": "https://wiki.haskell.org/wikiupload/4/4a/HaskellLogoStyPreview-1.png",
 
-"chapel": "https://chapel-lang.org/images/contest-winner.png",
+		"chapel": "https://chapel-lang.org/images/contest-winner.png",
 
-"red": "https://upload.wikimedia.org/wikipedia/en/e/e9/Red_Language_Tower_Logo.png",
+		"red": "https://upload.wikimedia.org/wikipedia/en/e/e9/Red_Language_Tower_Logo.png",
 
-"Ruby": "https://www.vectorlogo.zone/logos/ruby/ruby-card.png",
+		"Ruby": "https://www.vectorlogo.zone/logos/ruby/ruby-card.png",
 
-"Swift": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Swift_logo.svg/2000px-Swift_logo.svg.png",
+		"Swift": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Swift_logo.svg/2000px-Swift_logo.svg.png",
 
-"TypeScript": "https://camo.githubusercontent.com/364fcc20318b28180fbea3e335792e45caf3d4b2/687474703a2f2f7777772e747970657363726970746c616e672e6f72672f6173736574732f696d616765732f69636f6e732f616e64726f69642d6368726f6d652d313932783139322e706e67",
+		"TypeScript": "https://camo.githubusercontent.com/364fcc20318b28180fbea3e335792e45caf3d4b2/687474703a2f2f7777772e747970657363726970746c616e672e6f72672f6173736574732f696d616765732f69636f6e732f616e64726f69642d6368726f6d652d313932783139322e706e67",
 
-"MicroPython": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Micropython-logo.svg/2000px-Micropython-logo.svg.png",
+		"MicroPython": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Micropython-logo.svg/2000px-Micropython-logo.svg.png",
 
-"PowerShell": "https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png",
+		"PowerShell": "https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png",
 
-"Prolog": "https://starbeamrainbowlabs.com/images/logos/swi-prolog.svg",
+		"Prolog": "https://starbeamrainbowlabs.com/images/logos/swi-prolog.svg",
 
-"SQL": "https://hackr.io/tutorials/learn-sql/svg/sql_logo"
-},
-limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-onAutocomplete: function(val) {
-$('#tagsHolder').append('<div class="chip">'+$('#skill').val()+'<i class="close material-icons">close</i></div>');
-},
-minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-});
-		  $('#speciality').autocomplete({
+		"SQL": "https://hackr.io/tutorials/learn-sql/svg/sql_logo"
+		},
+		limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+		onAutocomplete: function(val) {
+		$('#tagsHolder').append('<div class="chip">'+$('#skill').val()+'<i class="close material-icons">close</i></div>');
+		},
+		minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+		});
+
+		$('#speciality').autocomplete({
+		data: {
+			"Blockchain" : null,
+			"Augumented Reality" : null,
+			"Android Apps" : null,
+			"iOS Apps" : null,
+			"UX/UI Design" : null,
+			"Cyber-Security" : null,
+			"Full Stack Web Dev" : null,
+			"Chatbots" : null,
+			"Server-side communication" : null,
+			"Data Mining" : null,
+			"Game Development" : null,
+			"Machine Learning" : null,
+			"Myo" : null,
+			"Arduino" : null,
+			"Raspberry Pi" : null,
+			"Muse" : null,
+			"Drones" : null,
+			"Other IoT Devices" : null
+			},
+		limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+		onAutocomplete: function(val) {
+		  $('#tagsHol').append('<div class="chip">'+$('#speciality').val()+'<i class="close material-icons">close</i></div>');
+		document.getElementById('speciality').val("");
+		},
+		minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+		});
+	        
+	    $('#school').autocomplete({
 		    data: {
-				"Blockchain" : null,
-				"Augumented Reality" : null,
-				"Android Apps" : null,
-				"iOS Apps" : null,
-				"UX/UI Design" : null,
-				"Cyber-Security" : null,
-				"Full Stack Web Dev" : null,
-				"Chatbots" : null,
-				"Server-side communication" : null,
-				"Data Mining" : null,
-				"Game Development" : null,
-				"Machine Learning" : null,
-				"Myo" : null,
-				"Arduino" : null,
-				"Raspberry Pi" : null,
-				"Muse" : null,
-				"Drones" : null,
-				"Other IoT Devices" : null
+					'Vancouver Island University':null,
+					'Royal Roads University':null,
+					'Simon Fraser University':null,
+					'Trinity Western University':null,
+					'Thompson River University':null,
+					'University of the Fraser Valley':null,
+					'University of British Columbia':null,
+					'University of Northern British Columbia':null,
+					'University of Victoria':null,
+					'First Nations University of Canada':null,
+					'University of Regina':null,
+					'University of Saskatchewan':null,
+					'Athabasca University':null,
+					'Augustana University College':null,
+					'Concordia University College of Alberta':null,
+					'The King\'s University College':null,
+					'University of Alberta':null,
+					'University of Calgary':null,
+					'University of Lethbridge':null,
+					'MacEwan University':null,
+					'Mount Royal University':null,
+					'Brandon University':null,
+					'University of Manitoba':null,
+					'University of Winnipeg':null,
+					'Canadian Mennonite University':null,
+					'St. Paul\'s College':null,
+					'Universite de Saint-Boniface':null,
+					'Algoma University':null,
+					'Brescia University College':null,
+					'Brock University':null,
+					'Carleton University':null,
+					'Dominican University College':null,
+					'Huron University College':null,
+					'King\'s University College at Western University':null,
+					'Lakehead University':null,
+					'Laurentian University':null,
+					'McMaster University':null,
+					'Nipissing University':null,
+					'OCAD University':null,
+					'Queen\'s University':null,
+					'Redeemer University College':null,
+					'Royal Military College of Canada':null,
+					'Ryerson University':null,
+					'Saint Paul University':null,
+					'St. Jerome\'s University':null,
+					'Trent University':null,
+					'University of Guelph':null,
+					'University of Ontario Institute of Technology':null,
+					'University of Ottawa':null,
+					'University of St. Michael\'s College':null,
+					'University of Sudbury':null,
+					'University of Toronto':null,
+					'University of Trinity College':null,
+					'University of Waterloo':null,
+					'University of Western Ontario':null,
+					'University of Windsor':null,
+					'Victoria University':null,
+					'Wilfrid Laurier University':null,
+					'York University':null,
+					'Bishop\'s University':null,
+					'Concordia University':null,
+					'Ecole de technologie superieur':null,
+					'Ecole nationale d\'administration publique':null,
+					'Ecole Polytechnique de Montreal':null,
+					'HEC Montreal':null,
+					'Institut national de la recherche scientifique':null,
+					'McGill University':null,
+					'TELUQ':null,
+					'Universite de Montreal':null,
+					'Universite de Sherbrooke':null,
+					'Universite de Quebec':null,
+					'Universite du Quebec a Chicoutimi (UQAC)':null,
+					'Universite du Quebec a Montreal (UQAM)':null,
+					'Universite du Quebec a Rimouski (UQAR)':null,
+					'Universite du Quebec a Trois-Rivieres (UQTR)':null,
+					'Universite du Quebec en Abitibi-Temiscamingue (UQAT)':null,
+					'Universite du Quebec en Outaouais':null,
+					'Universite de Laval':null,
+					'University of Prince Edward Island':null,
+					'Acadia University':null,
+					'Cape Breton University':null,
+					'Dalhousie University':null,
+					'Mount Saint Vincent University':null,
+					'NSCAD University':null,
+					'Saint Mary\'s University':null,
+					'St. Francis Xavier University':null,
+					'Universite Sainte-Anne':null,
+					'University of King\'s College':null,
+					'Mount Allison University':null,
+					'St. Thomas University':null,
+					'Universite de Moncton':null,
+					'University of New Brunswick':null,
+					'Memorial University of Newfoundland':null,
+					'British Columbia Institute of Technology':null,
+					'Okanagan College':null,
+					'Ashton College':null,
+					'Brighton College':null,
+					'Columbia College':null,
+					'Camosun College':null,
+					'Canadian College':null,
+					'Capilano University':null,
+					'College Educacentre':null,
+					'College of the New Caledonia':null,
+					'College of the Rockies':null,
+					'Douglas College':null,
+					'Eton College':null,
+					'Justice Institute of British Columbia':null,
+					'Kwantlen Polytechnic University':null,
+					'Langara College':null,
+					'Native Education College':null,
+					'Nicola Valley Institute of Technology':null,
+					'North Island College':null,
+					'Northern Lights College':null,
+					'Northwest Community College':null,
+					'Okanagan College':null,
+					'Selkirk College':null,
+					'Sprott Shaw College':null,
+					'Vancouver Community College':null,
+					'Vancouver Institute of Media Arts':null,
+					'Winnipeg Technical College':null,
+					'Assiniboine Community College':null,
+					'University College of the North':null,
+					'Red River College of Applied Arts, Science and Technology':null,
+					'Ecole technique et professionnelle, Universite de Saint-Boniface':null,
+					'Manitoba Institute of Trades and Technology':null,
+					'New Brunswick College of Craft and Design':null,
+					'New Brunswick Community College':null,
+					'Maritime College of Forest Technology':null,
+					'New Brunswick Bible Institute':null,
+					'College of the North Atlantic':null,
+					'Marine Institute':null,
+					'Centre for Nursing Studies':null,
+					'Universite de Guelph, Campus d\'Alfred':null,
+					'Algonquin College':null,
+					'College Boreal':null,
+					'Cambrian College of Applied Arts and Technology':null,
+					'Canadore College of Applied Arts and Technology':null,
+					'Centennial College of Applied Arts and Technology':null,
+					'La Cite collegiale':null,
+					'Conestoga College Institute of Technology and Advanced Learning':null,
+					'Confederation College of Applied Arts and Technology':null,
+					'Durham College':null,
+					'Fanshawe College of Applied Arts and Technology':null,
+					'Fleming College':null,
+					'George Brown College':null,
+					'Georgian College of Applied Arts and Technology':null,
+					'Humber College Institute of Technology & Advanced Learning University of Guelph, Kemptville Campus':null,
+					'Lambton College of Applied Arts and Technology':null,
+					'Loyalist College of Applied Arts and Technology':null,
+					'The Michener Institute for Applied Health Sciences':null,
+					'Mohawk College of Applied Arts and Technology':null,
+					'Niagara College':null,
+					'Northern College of Applied Arts and Technology':null,
+					'St. Clair College of Applied Arts and Technology':null,
+					'St. Lawrence College':null,
+					'Sault College of Applied Arts and Technology':null,
+					'Seneca College of Applied Arts and Technology':null,
+					'Sheridan College Institute of Technology and Advanced Learning':null,
+					'Aurora College':null,
+					'Academy of Learning College':null,
+					'Canadian Coast Guard College':null,
+					'Gaelic College':null,
+					'Kingston Bible College':null,
+					'Nova Scotia Community College':null,
+					'Nunavut Arctic College':null,
+					'Holland College':null,
+					'Maritime Christian College':null,
+					'College Acadie I.-P.-E.':null,
+					'Cegep de l\'Abitibi-Temiscamingue':null,
+					'College Ahuntsic':null,
+					'College Andre-Laurendeau':null,
+					'Cegep de Baie-Comeau':null,
+					'Cegep Beauce-Appalaches':null,
+					'College de Bois-de-Boulogne':null,
+					'Champlain Regional College':null,
+					'Cegep de Chicoutimi':null,
+					'Dawson College':null,
+					'Cegep de Drummondville':null,
+					'Cegep Edouard-Montpetit':null,
+					'College Francois-Xavier-Garneau':null,
+					'Cegep de la Gaspesie et des Iles':null,
+					'College Gerald-Godin':null,
+					'Cegep de Granby-Haute-Yamaska':null,
+					'Heritage College':null,
+					'John Abbott College':null,
+					'Cegep de Jonquiere':null,
+					'Cegep de La Pocatiere':null,
+					'Cegep regional de Lanaudiere':null,
+					'Cegep de Levis-Lauzon':null,
+					'Cegep Limoilou':null,
+					'College Lionel-Groulx':null,
+					'College de Maisonneuve':null,
+					'Cegep Marie-Victorin':null,
+					'Cegep de Matane':null,
+					'College Montmorency':null,
+					'Cegep de l\'Outaouais':null,
+					'Cegep de Rimouski':null,
+					'College de Rosemont':null,
+					'Cegep de Saint-Felicien':null,
+					'Cegep de Saint-Hyacinthe':null,
+					'Cegep de Saint-Jean-sur-Richelieu':null,
+					'Cegep de Saint-Jerome':null,
+					'Cegep de Saint-Laurent':null,
+					'Cegep de Sainte-Foy':null,
+					'Cegep de Sept-Iles':null,
+					'College Shawinigan':null,
+					'Cegep de Sherbrooke':null,
+					'Cegep de Sorel-Tracy':null,
+					'Cegep de Thetford':null,
+					'Cegep de Trois-Rivieres':null,
+					'College de Valleyfield':null,
+					'Vanier College':null,
+					'Cegep de Victoriaville':null,
+					'Cegep du Vieux Montreal':null,
+					'College Bart':null,
+					'College Jean-de-Brebeuf':null,
+					'College Lafleche':null,
+					'LaSalle College':null,
+					'Marianopolis College':null,
+					'College International Marie de France':null,
+					'College Merici':null,
+					'O\'Sullivan College of Montreal':null,
+					'College O\'Sullivan de Quebec':null,
+					'College Stanislas':null,
+					'Ecole de musique Vincent d\'Indy':null,
+					'National Circus School':null,
+					'Seminaire de Sherbrooke':null,
+					'Trebas Institute':null,
+					'Bethany College':null,
+					'Briercrest College and Seminary':null,
+					'Carlton Trail Regional College':null,
+					'Horizon College and Seminary':null,
+					'College Mathieu':null,
+					'Cumberland College':null,
+					'Eston College':null,
+					'Great Plains College':null,
+					'Nipawin Bible College':null,
+					'Northlands College':null,
+					'North West Regional College':null,
+					'Parkland College':null,
+					'Saskatchewan Indian Institute of Technologies':null,
+					'Saskatchewan Institute of Applied Sciences and Technology':null,
+					'Southeast Regional College':null,
+					'St Peter\'s College':null,
+					'Western Academy Broadcasting College':null,
+					'Yukon College':null
 				},
 		    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
 		    onAutocomplete: function(val) {
-		      $('#tagsHol').append('<div class="chip">'+$('#speciality').val()+'<i class="close material-icons">close</i></div>');
-document.getElementById('speciality').val("");
+		  //     $('#tagsSchool').append('<div class="chip">'+$('#school').val()+'<i class="close material-icons">close</i></div>');
+				// document.getElementById('school').val("");
 		    },
 		    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 		  });
-		});
-        
+});
     </script>
   <script>
    $(document).ready(function() {
