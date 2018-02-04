@@ -84,6 +84,7 @@ def createUser():
 		return render_template("signup.html", error="username taken")
 	userData = {"firstname":request.form['firstname'], "lastname":request.form['lastname'], "username": request.form['username'], "email":request.form['email'], "password": request.form['password']}
 	root.child('users').child(request.form['username']).set(userData)
+	root.child('users').child(request.form['username']).child('events').set({"tempHack":0})
 	session['name'] = request.form['firstname']+" "+request.form['lastname']
 	session['username'] = request.form['username']
 	session['logged_in'] = True
@@ -155,8 +156,8 @@ def addSchool():
 	if not 'logged_in' in session:
 		if not session['logged_in']:
 			return render_template('index.html')
-	skills = request.form['data']
-	root.child('users').child(session['username']).child('languages').set(skills)
+	skills = request.form['school']
+	root.child('users').child(session['username']).child('school').set(skills)
 	return redirect("profile")
 	
 @app.route("/viewprofile/", methods=['GET'])
