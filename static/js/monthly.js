@@ -283,9 +283,10 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				var randomId = ID();
 
 				var hackathons = document.getElementById('hackathons').value.split(", ");
+				var eventPlaceHolder = eventTitle.split(" ");
 				var found = false;
 				for(var i = 0; i < hackathons.length; i++) {
-					if(hackathons[i] == eventTitle) {
+					if(hackathons[i] == eventPlaceHolder[0]) {
 						found = true;
 					}
 				}
